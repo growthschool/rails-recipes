@@ -1,0 +1,20 @@
+<h1>Admin Event List</h1>
+
+<p class="text-right">
+<%= link_to "New Event", new_admin_event_path, :class => "btn btn-primary" %>
+</p>
+
+<table class="table">
+<tr>
+  <th>Event Name</th>
+  <th>Actions</th>
+</tr>
+<% @events.each do |event| %>
+  <tr>
+    <td><%= link_to event.name, admin_event_path(event) %></td>
+    <td>
+      <%= link_to "Edit", edit_admin_event_path(event), :class => "btn btn-default" %>
+      <%= link_to "Delete", admin_event_path(event), :method => "delete", :data => { :confirm => "Are you sure?" }, :class => "btn btn-danger" %>
+  </tr>
+<% end %>
+</table>
