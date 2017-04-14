@@ -1,4 +1,10 @@
 "zh-CN":
+  event:
+    status:
+      draft: 草稿
+      public: 公開
+      private: 私密
+
   hello: "亲～ %{name} 你好："
   event_list: 活动列表
   admin:
