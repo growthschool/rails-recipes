@@ -1,3 +1,4 @@
+<h1>Edit User</h1>
 <% if @user.errors.any? %>
   <div id="error_explanation">
     <ul>
@@ -23,7 +24,7 @@
 
   <div class="form-group">
     <%= f.submit "Update", :class => "btn btn-primary" %>
-    <%= link_to "Cancel", admin_events_path %>
+    <%= link_to "Cancel", admin_users_path %>
   </div>
 
 <% end %>
