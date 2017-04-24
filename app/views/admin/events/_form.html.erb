@@ -54,7 +54,8 @@
 
 <div class="form-group">
   <%= f.label :description %>
-  <%= f.text_area :description, :class => "form-control" %>
+  <%#= f.text_area :description, :class => "form-control" %>
+  <%= f.cktext_area :description, ckeditor: { toolbar: 'mini', language: 'zh-CN'} %>
 </div>
 
 <%= f.nested_fields_for :tickets do |ff| %>
