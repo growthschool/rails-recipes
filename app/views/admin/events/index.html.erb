@@ -4,13 +4,18 @@
 <%= link_to "New Event", new_admin_event_path, :class => "btn btn-primary" %>
 </p>
 
+<%= form_tag bulk_update_admin_events_path, :class => "form-inline" do %>
 <table class="table">
 <tr>
+  <th><%= check_box_tag "全選", "1", false, :id => "toggle_all" %></th>
   <th>Event Name</th>
   <th>Actions</th>
 </tr>
 <% @events.each do |event| %>
   <tr>
+    <td>
+      <%= check_box_tag "ids[]", event.id %>
+    </td>
     <td><%= link_to event.name, admin_event_path(event) %></td>
     <td>
       <%= link_to "Tickets", admin_event_tickets_path(event), :class => "btn btn-default" %>
@@ -19,3 +24,18 @@
   </tr>
 <% end %>
 </table>
+
+  <p><%= submit_tag "批次刪除", :class => "btn btn-danger", :data => { :confirm => "Are you sure?" } %></p>
+
+<% end %>
+
+
+<script>
+  $("#toggle_all").click(function(){
+    if ( $(this).prop("checked") ) {
+      $("input[name='ids[]']").prop("checked", true);
+    } else {
+      $("input[name='ids[]']").prop("checked", false);
+    }
+  })
+</script>
