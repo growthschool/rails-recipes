@@ -1,5 +1,8 @@
 class Event < ApplicationRecord
 
+  include RankedModel
+  ranks :row_order
+
   STATUS = ["draft", "public", "private"]
   validates_inclusion_of :status, :in => STATUS
 

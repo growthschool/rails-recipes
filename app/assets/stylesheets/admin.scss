@@ -3,3 +3,12 @@
 @import "select2";
 @import "select2-bootstrap";
 @import "bootstrap-datepicker3";
+@import "jquery-ui";
+
+.sortable .sortable_icon {
+  border: none;
+  color: #ECECEC;
+  font-size: 20px;
+  cursor: move;
+  padding-right: 10px;
+}

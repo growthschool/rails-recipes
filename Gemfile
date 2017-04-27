@@ -24,6 +24,9 @@ gem 'bootstrap-datepicker-rails'
 
 gem 'ckeditor'
 
+gem 'ranked-model'
+gem 'jquery-ui-rails'
+
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use Puma as the app server

@@ -1,7 +1,7 @@
 class Admin::EventsController < AdminController
 
   def index
-    @events = Event.all
+    @events = Event.rank(:row_order).all
   end
 
   def show
@@ -36,6 +36,15 @@ class Admin::EventsController < AdminController
     else
       render "edit"
     end
+  end
+
+  def reorder
+    @event = Event.find_by_friendly_id!(params[:id])
+
+    @event.row_order_position = params[:row_order_position]
+    @event.save!
+
+    head :ok
   end
 
   def destroy
