@@ -24,20 +24,24 @@
       <%= link_to event.name, admin_event_path(event) %>
     </td>
     <td>
+      <%#= link_to "上移", reorder_admin_event_path(event, :position => :up), :method => :post, :class => "btn btn-default" %>
+      <%#= link_to "下移", reorder_admin_event_path(event, :position => :down), :method => :post, :class => "btn btn-default" %>
+      <%= link_to "置頂", reorder_admin_event_path(event, :position => :first), :method => :post, :class => "btn btn-default" %>
+      <%= link_to "置底", reorder_admin_event_path(event, :position => :last), :method => :post, :class => "btn btn-default" %>
+
       <%= link_to "Tickets", admin_event_tickets_path(event), :class => "btn btn-default" %>
       <%= link_to "Edit", edit_admin_event_path(event), :class => "btn btn-default" %>
       <%= link_to "Delete", admin_event_path(event), :method => "delete", :data => { :confirm => "Are you sure?" }, :class => "btn btn-danger" %>
+    </td>
   </tr>
 <% end %>
 </tbody>
 </table>
   <p>
   <%= select_tag :event_status, options_for_select( Event::STATUS.map{ |s| [t(s, :scope => "event.status"), s] }), :class => "form-control" %>
-
   <%= submit_tag t(:bulk_update), :class => "btn btn-primary" %>
   <%= submit_tag t(:bulk_delete), :class => "btn btn-danger", :data => { :confirm => "Are you sure?" } %>
   </p>
-
 <% end %>
 
 <script>
@@ -50,21 +54,21 @@
   })
 
   $( ".sortable" ).sortable({
-    axis: 'y',
-    items: 'tr',
-    cursor: 'move',
-    handle: ".sortable_icon",
-    stop: function(e, ui){
+    axis: 'y',       // 限制只能上下拖拉
+    items: 'tr',     // 拖拉整個 tr
+    cursor: 'move',  // 變更拖拉時的 icon
+    handle: ".sortable_icon",  // 限制只有點 .sortable_icon 才能開始拖拉
+    stop: function(e, ui){     // 當拖拉結束時，會調用這個方法
       ui.item.children('td').effect('highlight', {}, 1000)
     },
-    update: function(e, ui) {
+    update: function(e, ui) {   // 當拖拉結束並且 DOM 上的位置變更時，會調用這個方法
       reorder_url = ui.item.data('reorder-url')
       position = ui.item.index()
       $.ajax({
        type: 'POST',
        url: reorder_url,
        dataType: 'json',
-       data: { row_order_position: position }
+       data: { position: position }
       })
     }
   });

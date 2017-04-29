@@ -41,10 +41,13 @@ class Admin::EventsController < AdminController
   def reorder
     @event = Event.find_by_friendly_id!(params[:id])
 
-    @event.row_order_position = params[:row_order_position]
+    @event.row_order_position = params[:position]
     @event.save!
 
-    head :ok
+    respond_to do |format|
+      format.html { redirect_to admin_events_path }
+      format.json { render :json => { :message => "ok" }}
+    end
   end
 
   def destroy
