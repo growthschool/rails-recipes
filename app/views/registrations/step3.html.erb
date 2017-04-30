@@ -2,6 +2,14 @@
 
 <h2>Step 3</h2>
 
+<% if @registration.errors.any? %>
+  <ul>
+  <% @registration.errors.full_messages.each do |error| %>
+    <li><%= error %></li>
+  <% end %>
+  </ul>
+<% end %>
+
 <%= form_for @registration, :url => update_step3_event_registration_path(@event, @registration) do |f| %>
 
   <div class="form-group">
