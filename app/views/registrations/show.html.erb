@@ -1,0 +1,18 @@
+<h1><%= @event.name %></h1>
+
+<h2>報名資料</h2>
+
+<dl>
+  <dt>狀態</dt>
+  <dd><%= t(@registration.status, :scope => "registration.status") %></dd>
+  <dt>姓名</dt>
+  <dd><%= @registration.name %></dd>
+  <dt>E-mail</dt>
+  <dd><%= @registration.email %></dd>
+  <dt>電話</dt>
+  <dd><%= @registration.cellphone %></dd>
+  <dt>網站</dt>
+  <dd><%= @registration.website %></dd>
+  <dt>自我介紹</dt>
+  <dd><%= simple_format @registration.bio %></dd>
+</dl>

@@ -1,6 +1,10 @@
 "zh-CN":
   bulk_update: 批次編輯
   bulk_delete: 批次刪除
+  registration:
+    status:
+      pending: 报名尚未完成
+      confirmed: 报名成功
 
   event:
     status:
