@@ -3,7 +3,7 @@ class Admin::EventRegistrationsController < AdminController
   before_action :find_event
 
   def index
-    @registrations = @event.registrations.order("id DESC").page(params[:page])
+    @registrations = @event.registrations.includes(:ticket).order("id DESC").page(params[:page])
 
     if params[:status] && Registration::STATUS.include?(params[:status])
       @registrations = @registrations.by_status(params[:status])
