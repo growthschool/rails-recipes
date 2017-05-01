@@ -16,8 +16,7 @@ class Admin::EventRegistrationsController < AdminController
     end
 
     if params[:ticket_id].present?
-      ticket = @event.tickets.find(params[:ticket_id])
-      @registrations = @registrations.by_ticket(ticket)
+      @registrations = @registrations.by_ticket(params[:ticket_id])
     end
 
     if params[:start_on].present?
@@ -33,7 +32,7 @@ class Admin::EventRegistrationsController < AdminController
     end
 
     if Array(params[:ticket_ids]).any?
-      @registrations = @registrations.where( :ticket_id => params[:ticket_ids] )
+      @registrations = @registrations.by_ticket(params[:ticket_ids])
     end
 
   end
