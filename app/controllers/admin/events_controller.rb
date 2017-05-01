@@ -34,6 +34,7 @@ class Admin::EventsController < AdminController
     if @event.update(event_params)
       redirect_to admin_events_path
     else
+      @event.friendly_id = @event.friendly_id_was if @event.errors[:friendly_id].any?
       render "edit"
     end
   end
