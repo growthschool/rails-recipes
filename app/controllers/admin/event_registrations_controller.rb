@@ -1,3 +1,4 @@
+require 'csv'
 class Admin::EventRegistrationsController < AdminController
 
   before_action :find_event
@@ -35,6 +36,20 @@ class Admin::EventRegistrationsController < AdminController
       @registrations = @registrations.by_ticket(params[:ticket_ids])
     end
 
+    if params[:commit] == t(:export_csv)
+      @registrations = @registrations.reorder("id ASC")
+      #export = EventRegistrationExport.new(@registrations)
+      csv_string = CSV.generate do |csv|
+        csv << ["報名ID", "票種", "姓名", "狀態", "Email", "報名時間"]
+        @registrations.each do |r|
+          csv << [r.id, r.ticket.name, r.name, t(r.status, :scope => "registration.status"), r.email, r.created_at]
+        end
+      end
+      # export.output_csv
+      send_data csv_string, :filename => "#{@event.friendly_id}-registrations-#{Time.now.to_s(:number)}.csv"
+    else
+      # default will render index.html.erb
+    end
   end
 
   def destroy

@@ -1,4 +1,7 @@
 "zh-CN":
+  export_csv: 汇出 CSV
+  export_excel: 汇出 Excel
+
   bulk_update: 批次編輯
   bulk_delete: 批次刪除
   registration:
