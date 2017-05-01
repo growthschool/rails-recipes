@@ -20,6 +20,9 @@ class Event < ApplicationRecord
 
   has_many :registrations, :dependent => :destroy
 
+  scope :only_public, -> { where( :status => "public" ) }
+  scope :only_available, -> { where( :status => ["public", "private"] ) }
+
   def to_param
     self.friendly_id
   end
