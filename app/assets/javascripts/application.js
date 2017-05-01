@@ -18,4 +18,5 @@
 //= require nested_form_fields
 //= require bootstrap-datepicker/core
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.js
+//= require validator.min.js
 //= require_tree .
