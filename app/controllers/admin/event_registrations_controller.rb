@@ -9,6 +9,10 @@ class Admin::EventRegistrationsController < AdminController
       @registrations = @registrations.by_status(params[:status])
     end
 
+    if Array(params[:filter_by_ticket]).any?
+      @registrations = @registrations.where( :ticket_id => params[:filter_by_ticket] )
+    end
+
   end
 
   def destroy
