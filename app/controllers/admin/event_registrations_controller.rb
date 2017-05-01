@@ -9,8 +9,13 @@ class Admin::EventRegistrationsController < AdminController
       @registrations = @registrations.by_status(params[:status])
     end
 
-    if Array(params[:filter_by_ticket]).any?
-      @registrations = @registrations.where( :ticket_id => params[:filter_by_ticket] )
+    if params[:ticket_id]
+      ticket = @event.tickets.find(params[:ticket_id])
+      @registrations = @registrations.by_ticket(ticket)
+    end
+
+    if Array(params[:ticket_ids]).any?
+      @registrations = @registrations.where( :ticket_id => params[:ticket_ids] )
     end
 
   end

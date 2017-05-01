@@ -4,27 +4,21 @@
 <%= link_to "New Registration", new_admin_event_registration_path(@event), :class => "btn btn-primary" %>
 </p>
 
-<%= form_tag admin_event_registrations_path(@event), :method => :get do %>
-
   <div class="submenu">
     <div class="btn-group">
-      <%= link_to "全部 (#{@event.registrations.count})", admin_event_registrations_path(:status => nil), :class => "btn btn-success btn-group #{(params[:status].blank?) ? "active" : ""}" %>
+      <%= link_to "全部 (#{@event.registrations.size})", admin_event_registrations_path(registration_filters(:status => nil)), :class => "btn btn-success btn-group #{(params[:status].blank?) ? "active" : ""}" %>
       <% Registration::STATUS.each do |s| %>
-          <%= link_to t(s, :scope => "registration.status") + " (#{@event.registrations.by_status(s).count})", admin_event_registrations_path(:status => s), :class => "btn btn-success btn-group #{(params[:status] == s) ? "active" : ""}" %>
+          <%= link_to t(s, :scope => "registration.status") + " (#{@event.registrations.by_status(s).count})", admin_event_registrations_path(registration_filters(:status => s)), :class => "btn btn-success btn-group #{(params[:status] == s) ? "active" : ""}" %>
+      <% end %>
+    </div>
+
+    <div class="btn-group">
+      <%= link_to "全部 (#{@event.registrations.size})", admin_event_registrations_path(registration_filters(:ticket_id => nil)), :class => "btn btn-default btn-group #{(params[:ticket_id].blank?) ? "active" : ""}" %>
+      <% @event.tickets.each do |t| %>
+          <%= link_to t.name + " (#{@event.registrations.by_ticket(t).count})", admin_event_registrations_path(registration_filters(:ticket_id => t.id)), :class => "btn btn-default btn-group #{(params[:ticket_id].to_i == t.id) ? "active" : ""}" %>
       <% end %>
     </div>
   </div>
-
-  <div class="submenu">
-    <% @event.tickets.each do |t| %>
-      <label><%= check_box_tag "filter_by_ticket[]", t.id, Array(params[:filter_by_ticket]).include?(t.id.to_s) %> <%= t.name %> (<%= @event.registrations.where( :ticket_id => t.id ).count %>)</label>
-    <% end %>
-  </div>
-
-  <p class="text-right">
-    <%= submit_tag "送出篩選", :class => "btn btn-primary" %>
-  </p>
-<% end %>
 
 <table class="table">
 <tr>
