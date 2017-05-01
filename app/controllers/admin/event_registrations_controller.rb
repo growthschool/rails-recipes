@@ -47,6 +47,8 @@ class Admin::EventRegistrationsController < AdminController
       end
       # export.output_csv
       send_data csv_string, :filename => "#{@event.friendly_id}-registrations-#{Time.now.to_s(:number)}.csv"
+    elsif params[:commit] == t(:export_excel)
+      render xlsx: "index.xlsx.axlsx", filename: "#{@event.friendly_id}-registrations-#{Time.now.to_s(:number)}.xlsx"
     else
       # default will render index.html.erb
     end

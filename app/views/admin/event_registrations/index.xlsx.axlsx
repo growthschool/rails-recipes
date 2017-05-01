@@ -1,0 +1,7 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "Buttons") do |sheet|
+  sheet.add_row ["報名ID", "票種", "姓名", "狀態", "Email", "報名時間"]
+  @registrations.each do |r|
+    sheet.add_row [r.id, r.ticket.name, r.name, t(r.status, :scope => "registration.status"), r.email, r.created_at]
+  end
+end
