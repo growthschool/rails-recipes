@@ -6,6 +6,8 @@
 
 <%= form_tag admin_event_registrations_path(@event), :method => :get do %>
 
+  <p><%= text_field_tag :registration_id, params[:registration_id], :placeholder => "報名編號，可用,號區隔", :class => "form-control" %></p>
+
   <p><% Registration::STATUS.each do |s| %>
     <label><%= check_box_tag "statuses[]", s, Array(params[:statuses]).include?(s) %> <%= t(s, :scope => "registration.status") %> (<%= @event.registrations.by_status(s).size %>)</label>
   <% end %></p>
