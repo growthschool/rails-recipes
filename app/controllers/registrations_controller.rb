@@ -13,9 +13,10 @@ class RegistrationsController < ApplicationController
     @registration.user = current_user
     @registration.current_step = 1
 
-    if @registration.save!
+    if @registration.save
       redirect_to step2_event_registration_path(@event, @registration)
     else
+      flash[:alert] = @registration.errors[:base].join("、")
       render "new"
     end
   end
