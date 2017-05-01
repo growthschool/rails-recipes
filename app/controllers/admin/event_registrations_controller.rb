@@ -37,20 +37,25 @@ class Admin::EventRegistrationsController < AdminController
     end
 
     if params[:commit] == t(:export_csv)
-      @registrations = @registrations.reorder("id ASC")
-      #export = EventRegistrationExport.new(@registrations)
-      csv_string = CSV.generate do |csv|
-        csv << ["報名ID", "票種", "姓名", "狀態", "Email", "報名時間"]
-        @registrations.each do |r|
-          csv << [r.id, r.ticket.name, r.name, t(r.status, :scope => "registration.status"), r.email, r.created_at]
-        end
-      end
-      # export.output_csv
-      send_data csv_string, :filename => "#{@event.friendly_id}-registrations-#{Time.now.to_s(:number)}.csv"
     elsif params[:commit] == t(:export_excel)
       render xlsx: "index.xlsx.axlsx", filename: "#{@event.friendly_id}-registrations-#{Time.now.to_s(:number)}.xlsx"
     else
       # default will render index.html.erb
+    end
+
+    respond_to do |format|
+      format.html
+      format.csv {
+        @registrations = @registrations.reorder("id ASC")
+        csv_string = CSV.generate do |csv|
+          csv << ["報名ID", "票種", "姓名", "狀態", "Email", "報名時間"]
+          @registrations.each do |r|
+            csv << [r.id, r.ticket.name, r.name, t(r.status, :scope => "registration.status"), r.email, r.created_at]
+          end
+        end
+        send_data csv_string, :filename => "#{@event.friendly_id}-registrations-#{Time.now.to_s(:number)}.csv"
+      }
+      format.xlsx
     end
   end
 
