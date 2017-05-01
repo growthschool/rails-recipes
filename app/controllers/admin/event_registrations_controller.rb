@@ -3,7 +3,9 @@ class Admin::EventRegistrationsController < AdminController
   before_action :find_event
 
   def index
-    @registrations = @event.registrations.includes(:ticket).order("id DESC").page(params[:page])
+    @q = @event.registrations.ransack(params[:q])
+
+    @registrations = @q.result.includes(:ticket).order("id DESC").page(params[:page])
 
     if params[:registration_id].present?
       @registrations = @registrations.where( :id => params[:registration_id].split(",") )
@@ -31,7 +33,7 @@ class Admin::EventRegistrationsController < AdminController
     end
 
     if Array(params[:ticket_ids]).any?
-      @registrations = @registrations.by_ticket(params[:ticket_ids])
+      @registrations = @registrations.where( :ticket_id => params[:ticket_ids] )
     end
 
   end
