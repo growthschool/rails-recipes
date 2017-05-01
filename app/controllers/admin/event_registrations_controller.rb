@@ -5,21 +5,29 @@ class Admin::EventRegistrationsController < AdminController
   def index
     @registrations = @event.registrations.includes(:ticket).order("id DESC").page(params[:page])
 
-    if params[:status] && Registration::STATUS.include?(params[:status])
+    if params[:status].present? && Registration::STATUS.include?(params[:status])
       @registrations = @registrations.by_status(params[:status])
     end
 
-    if params[:ticket_id]
+    if params[:ticket_id].present?
       ticket = @event.tickets.find(params[:ticket_id])
       @registrations = @registrations.by_ticket(ticket)
     end
 
+    if params[:start_on].present?
+      @registrations = @registrations.where( "created_at >= ?", Date.parse(params[:start_on]).beginning_of_day )
+    end
+
+    if params[:end_on].present?
+      @registrations = @registrations.where( "created_at <= ?", Date.parse(params[:end_on]).end_of_day )
+    end
+
     if Array(params[:statuses]).any?
-      @registrations = @registrations.where( :status => params[:statuses] )
+      @registrations = @registrations.by_status(params[:statuses])
     end
 
     if Array(params[:ticket_ids]).any?
-      @registrations = @registrations.where( :ticket_id => params[:ticket_ids] )
+      @registrations = @registrations.by_ticket(params[:ticket_ids])
     end
 
   end
