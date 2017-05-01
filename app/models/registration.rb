@@ -16,6 +16,8 @@ class Registration < ApplicationRecord
 
   before_validation :generate_uuid, :on => :create
 
+  scope :by_status, ->(s){ where( :status => s ) }
+
   def to_param
     self.uuid
   end
