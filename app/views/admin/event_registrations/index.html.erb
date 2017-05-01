@@ -4,8 +4,11 @@
 <%= link_to "New Registration", new_admin_event_registration_path(@event), :class => "btn btn-primary" %>
 </p>
 
+<%= paginate @registrations %>
+
 <table class="table">
 <tr>
+  <th>ID</th>
   <th>Name</th>
   <th>Status</th>
   <th>E-mail</th>
@@ -14,6 +17,7 @@
 </tr>
 <% @registrations.each do |registration| %>
   <tr>
+    <td><%= registration.id %></td>
     <td><%= registration.name %></td>
     <td><%= t( registration.status, :scope => "registration.status") %></td>
     <td><%= registration.email %></td>
@@ -24,3 +28,5 @@
   </tr>
 <% end %>
 </table>
+
+<%= paginate @registrations %>

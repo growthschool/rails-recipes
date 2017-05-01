@@ -3,7 +3,7 @@ class Admin::EventRegistrationsController < AdminController
   before_action :find_event
 
   def index
-    @registrations = @event.registrations
+    @registrations = @event.registrations.page(params[:page])
   end
 
   def destroy
