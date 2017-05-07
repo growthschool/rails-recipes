@@ -72,8 +72,6 @@ class Admin::EventRegistrationsController < AdminController
     @event = Event.find_by_friendly_id!(params[:event_id])
   end
 
-  protected
-
   def registration_params
     params.require(:registration).permit(:status, :ticket_id, :name, :email, :cellphone, :website, :bio)
   end
