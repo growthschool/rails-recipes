@@ -17,6 +17,11 @@
   </div>
 
   <div class="form-group">
+    <%= f.label :role %>
+    <%= f.select :role, User::ROLES.map{ |x| [t(x, :scope => "user.role"), x] }, { :include_blank => true }, :class => "form-control" %>
+  </div>
+
+  <div class="form-group">
     <%= f.label :group_ids %>
     <%#= f.collection_check_boxes(:group_ids, Group.all, :id, :name) %>
     <%= f.select :group_ids, Group.all.map{ |g| [g.name, g.id] }, {}, :multiple => true, :class => "form-control" %>

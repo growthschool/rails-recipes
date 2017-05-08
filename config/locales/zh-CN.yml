@@ -1,4 +1,9 @@
 "zh-CN":
+  user:
+    role:
+      admin: 超級管理員
+      editor: 活動管理員
+
   export_csv: 汇出 CSV
   export_excel: 汇出 Excel
 
