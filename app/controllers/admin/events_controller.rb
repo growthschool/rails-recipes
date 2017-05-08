@@ -6,6 +6,11 @@ class Admin::EventsController < AdminController
 
   def show
     @event = Event.find_by_friendly_id!(params[:id])
+
+    @label = @event.tickets.map { |t| t.name }
+
+    @data1 = @event.tickets.map{ |t| t.registrations.size }
+    @data2 = @event.tickets.map{ |t| t.registrations.size * t.price }
   end
 
   def new
