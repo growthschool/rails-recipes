@@ -14,6 +14,14 @@ class User < ApplicationRecord
   has_one :profile
   accepts_nested_attributes_for :profile
 
+  def is_admin?
+    self.role == "admin"
+  end
+
+  def is_editor?
+    ["admin", "editor"].include?(self.role)
+  end
+
   def display_name
     self.email.split("@").first
   end
