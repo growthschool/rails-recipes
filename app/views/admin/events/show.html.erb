@@ -74,5 +74,32 @@ var myChart2 = new Chart(ctx2, {
 });
 </script>
 
+<hr>
+
+<canvas id="myChart3" width="400" height="200"></canvas>
+<script>
+var ctx3 = document.getElementById("myChart3");
+var myChart3 = new Chart(ctx3, {
+    type: 'line',
+    data: {
+        labels: <%= raw @dates.to_json %>,
+        datasets: [{
+            label: '# of Registrations',
+            data: <%= raw @data3.to_json %>,
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+</script>
+
 <%= sanitize @event.description %>
 

@@ -8,9 +8,14 @@ class Admin::EventsController < AdminController
     @event = Event.find_by_friendly_id!(params[:id])
 
     @label = @event.tickets.map { |t| t.name }
+    @data1 = @event.tickets.map{ |t| t.registrations.count }
+    @data2 = @event.tickets.map{ |t| t.registrations.count * t.price }
 
-    @data1 = @event.tickets.map{ |t| t.registrations.size }
-    @data2 = @event.tickets.map{ |t| t.registrations.size * t.price }
+    if @event.registrations.any?
+      @dates = (@event.registrations.order("id ASC").first.created_at.to_date..Date.today).to_a
+      @data3 = @dates.map{ |d| @event.registrations.where( "created_at >= ? AND created_at <= ?", d.beginning_of_day, d.end_of_day).count }
+    end
+
   end
 
   def new
