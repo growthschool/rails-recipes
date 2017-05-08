@@ -1,3 +1,7 @@
+<% if @event.logo.present? %>
+  <%= image_tag @event.logo.url %>
+<% end %>
+
 <h1><%= @event.name %></h1>
 
 <h2><%= t(@event.status, :scope => "event.status") %></h2>

@@ -51,6 +51,16 @@
 
 </div>
 
+<div class="form-group">
+  <%= f.label :logo %>
+  <%= f.file_field :logo, :class => "form-control" %>
+  <% if f.object.logo.present? %>
+    <label>
+      <%= check_box_tag "delete_event_logo", "1" %> 刪除圖檔
+    </label>
+    <%= link_to f.object.logo.filename, f.object.logo.url, :target => "_blank" %>
+  <% end %>
+</div>
 
 <div class="form-group">
   <%= f.label :description %>

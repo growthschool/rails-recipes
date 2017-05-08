@@ -31,6 +31,10 @@ class Admin::EventsController < AdminController
   def update
     @event = Event.find_by_friendly_id!(params[:id])
 
+    if params[:delete_event_logo] == "1"
+      @event.logo = nil
+    end
+
     if @event.update(event_params)
       redirect_to admin_events_path
     else
@@ -81,7 +85,7 @@ class Admin::EventsController < AdminController
   protected
 
   def event_params
-    params.require(:event).permit(:name, :description, :friendly_id, :status, :category_id, :tickets_attributes => [:id, :name, :description, :price, :_destroy])
+    params.require(:event).permit(:name, :logo, :description, :friendly_id, :status, :category_id, :tickets_attributes => [:id, :name, :description, :price, :_destroy])
   end
 
 end
