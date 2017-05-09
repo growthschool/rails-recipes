@@ -32,7 +32,7 @@
     <td><%= import.success_count %></td>
     <td>
       <ul>
-      <% import.error_messages.each do |e| %>
+      <% Array(import.error_messages).each do |e| %>
        <li><%= e[0] %> ----> <strong><%= e[1] %></strong></li>
       <% end %>
       </ul>

@@ -9,6 +9,8 @@ end
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.2'
 
+gem 'sidekiq'
+
 gem 'rails-i18n'
 gem 'devise-i18n'
 
