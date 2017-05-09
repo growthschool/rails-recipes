@@ -1,6 +1,7 @@
 class RegistrationsController < ApplicationController
 
   before_action :find_event
+  before_action :set_pending_registration, :only => [:step1, :step1_update, :step2, :step2_update, :step3, :step3_update]
 
   # 第一次新建
   def new
@@ -14,6 +15,9 @@ class RegistrationsController < ApplicationController
     @registration.current_step = 1
 
     if @registration.save
+
+      CheckRegistrationJob.set( wait: 15.minutes ).perform_later(@registration.id)
+
       redirect_to step2_event_registration_path(@event, @registration)
     else
       flash[:alert] = @registration.errors[:base].join("、")
@@ -22,11 +26,9 @@ class RegistrationsController < ApplicationController
   end
 
   def step1
-    @registration = @event.registrations.find_by_uuid(params[:id])
   end
 
   def step1_update
-    @registration = @event.registrations.find_by_uuid(params[:id])
     @registration.current_step = 1
 
     if @registration.update(registration_params)
@@ -37,11 +39,9 @@ class RegistrationsController < ApplicationController
   end
 
   def step2
-    @registration = @event.registrations.find_by_uuid(params[:id])
   end
 
   def step2_update
-    @registration = @event.registrations.find_by_uuid(params[:id])
     @registration.current_step = 2
 
     if @registration.update(registration_params)
@@ -52,11 +52,9 @@ class RegistrationsController < ApplicationController
   end
 
   def step3
-    @registration = @event.registrations.find_by_uuid(params[:id])
   end
 
   def step3_update
-    @registration = @event.registrations.find_by_uuid(params[:id])
     @registration.status = "confirmed"
     @registration.current_step = 3
 
@@ -76,6 +74,15 @@ class RegistrationsController < ApplicationController
   end
 
   protected
+
+  def set_pending_registration
+    @registration = @event.registrations.find_by_uuid(params[:id])
+
+    if @registration.status == "cancalled"
+      flash[:alert] = "請重新報名"
+      redirect_to event_path(@event)
+    end
+  end
 
   def registration_params
     params.require(:registration).permit(:ticket_id, :name, :email, :cellphone, :website, :bio)
