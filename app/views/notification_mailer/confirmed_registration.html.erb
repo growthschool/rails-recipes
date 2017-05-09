@@ -1,0 +1,12 @@
+<style>
+p{
+  color: red;
+}
+</style>
+<p>Hi <%= @registration.name %>,</p>
+
+<p>您已完成報名 <%= link_to @event.name, event_url(@event) %></p>
+
+<% content_for :action do %>
+  <%= link_to "瀏覽報名結果", event_registration_url(@event, @registration), :class => "btn-primary", :itemprop => "url" %>
+<% end %>

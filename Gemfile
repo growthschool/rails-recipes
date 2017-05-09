@@ -39,6 +39,8 @@ gem 'axlsx_rails'
 gem 'carrierwave'
 gem "mini_magick"
 
+gem 'premailer-rails'
+
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use Puma as the app server
