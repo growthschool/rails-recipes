@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170508081552) do
+ActiveRecord::Schema.define(version: 20170509064512) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -71,6 +71,19 @@ ActiveRecord::Schema.define(version: 20170508081552) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_profiles_on_user_id"
+  end
+
+  create_table "registration_imports", force: :cascade do |t|
+    t.string   "status"
+    t.string   "csv_file"
+    t.integer  "event_id"
+    t.integer  "user_id"
+    t.integer  "total_count"
+    t.integer  "success_count"
+    t.text     "error_messages"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["event_id"], name: "index_registration_imports_on_event_id"
   end
 
   create_table "registrations", force: :cascade do |t|

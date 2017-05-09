@@ -1,0 +1,42 @@
+<h1><%= @event.name %> / Registrations Import</h1>
+
+
+<%= form_for [:admin, @event, RegistrationImport.new] do |f| %>
+
+  <div class="form-group">
+    <%= f.label :csv_file %>
+    <%= f.file_field :csv_file, :required => true, :class => "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit "送出", :class => "btn btn-primary" %>
+  </div>
+
+<% end %>
+
+<table class="table">
+<tr>
+  <th>ID</th>
+  <th>狀態</th>
+  <th>CSV檔案</th>
+  <th>總筆數</th>
+  <th>匯入成功筆數</th>
+  <th>錯誤訊息</th>
+</tr>
+<% @imports.each do |import| %>
+  <tr>
+    <td><%= import.id %></td>
+    <td><%= import.status %></td>
+    <td><%= link_to import.csv_file.url, import.csv_file.url %></td>
+    <td><%= import.total_count %></td>
+    <td><%= import.success_count %></td>
+    <td>
+      <ul>
+      <% import.error_messages.each do |e| %>
+       <li><%= e[0] %> ----> <strong><%= e[1] %></strong></li>
+      <% end %>
+      </ul>
+    </td>
+  </tr>
+<% end %>
+</table>
