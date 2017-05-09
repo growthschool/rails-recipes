@@ -1,4 +1,8 @@
 "zh-CN":
+  notification:
+    subject:
+      confirmed_registration: "報名成功: %{name}"
+
   user:
     role:
       admin: 超級管理員
