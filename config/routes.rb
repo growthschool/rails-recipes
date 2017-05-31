@@ -9,6 +9,8 @@ Rails.application.routes.draw do
 
   resource :user
 
+  get "/faq" => "pages#faq"
+
   resources :events do
     resources :registrations do
       member do
