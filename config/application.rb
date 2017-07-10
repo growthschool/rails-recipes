@@ -12,4 +12,6 @@ module RailsRecipes
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
   end
+
+  config.i18n.default_locale = "zh-CN"
 end
