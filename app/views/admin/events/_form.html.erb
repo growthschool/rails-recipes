@@ -16,12 +16,21 @@
 </div>
 
 <div class="form-group">
-  <%= f.label :description %>
-  <%= f.text_area :description, :class => "form-control" %>
-</div>
-
-<div class="form-group">
   <%= f.label :friendly_id %>
   <%= f.text_field :friendly_id, :required => true, :class => "form-control" %>
   <p class="help-block">限小写英文数字及横线，将作为网址的一部分 </p>
+</div>
+
+<div class="btn-group" data-toggle="buttons">
+    <% Event::STATUS.each do |status| %>
+      <label class="btn btn-default <%= (status == f.object.status)? 'active' : '' %>">
+        <%= f.radio_button :status, status %>
+        <%= t(status, :scope => "event.status") %>
+      </label>
+    <% end %>
+</div>
+
+<div class="form-group">
+    <%= f.label :description %>
+    <%= f.text_area :description, :class => "form-control" %>
 </div>
