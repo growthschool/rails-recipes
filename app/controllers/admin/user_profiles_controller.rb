@@ -1,4 +1,5 @@
 class Admin::UserProfilesController < AdminController
+
   before_action :find_user_and_profile
 
   def edit

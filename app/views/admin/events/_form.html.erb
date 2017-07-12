@@ -45,6 +45,26 @@
      <%= f.select :category_id, Category.all.map{ |c| [c.name, c.id] }, {}, :class => "form-control" %>
 </div>
 
+   <%= f.fields_for :tickets do |ff| %>
+     <fieldset style="border-left: 5px solid #bbb; margin-bottom: 10px; padding: 10px;">
+       <legend>Ticket</legend>
+       <div class="form-group">
+         <%= ff.label :name %>
+         <%= ff.text_field :name, :class => "form-control" %>
+       </div>
+
+       <div class="form-group">
+         <%= ff.label :price %>
+         <%= ff.number_field :price, :class => "form-control" %>
+       </div>
+
+       <div class="form-group">
+         <%= ff.label :description %>
+         <%= ff.text_area :description, :class => "form-control" %>
+       </div>
+     </fieldset>
+   <% end %>
+
 <script>
   $("#event_category_id").select2( { theme: "bootstrap"} );
 </script>
