@@ -1,0 +1,47 @@
+module Admin::UserProfilesHelper
+  <h2>Edit User Profile</h2>
+<%= form_for @profile, :url => admin_user_profile_path(@user) do |f| %>
+
+  <div class="form-group">
+    <%= f.label :legal_name %>
+    <%= f.text_field :legal_name, :class => "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :birthday %>
+    <%= f.date_field :birthday, :class => "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :location %>
+    <%= f.text_field :location, :class => "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :education %>
+    <%= f.text_field :education, :class => "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :occupation %>
+    <%= f.text_field :occupation, :class => "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :bio %>
+    <%= f.text_area :bio, :class => "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :specialty %>
+    <%= f.text_area :specialty, :class => "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit "Submit", :class => "btn btn-primary" %>
+  </div>
+
+<% end %>
+
+
+end
