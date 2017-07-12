@@ -42,7 +42,7 @@ gem 'jbuilder', '~> 2.5'
 
 gem "rails-i18n"
 gem "devise-i18n"
-
+gem "select2-rails"
 
 group :development, :test do
   gem 'rspec-rails'

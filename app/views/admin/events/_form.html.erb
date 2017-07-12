@@ -44,3 +44,7 @@
      <%= f.label :category_id %>
      <%= f.select :category_id, Category.all.map{ |c| [c.name, c.id] }, {}, :class => "form-control" %>
 </div>
+
+<script>
+  $("#event_category_id").select2( { theme: "bootstrap"} );
+</script>
