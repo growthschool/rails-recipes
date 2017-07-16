@@ -10,14 +10,66 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170410085333) do
+ActiveRecord::Schema.define(version: 20170713095456) do
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "events", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
     t.integer  "user_id"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.string   "friendly_id"
+    t.string   "status",      default: "draft"
+    t.integer  "category_id"
+    t.integer  "row_order"
+    t.index ["category_id"], name: "index_events_on_category_id"
+    t.index ["friendly_id"], name: "index_events_on_friendly_id", unique: true
+    t.index ["row_order"], name: "index_events_on_row_order"
+  end
+
+  create_table "groups", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "memberships", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_memberships_on_group_id"
+    t.index ["user_id"], name: "index_memberships_on_user_id"
+  end
+
+  create_table "profiles", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "legal_name"
+    t.date     "birthday"
+    t.string   "location"
+    t.string   "education"
+    t.string   "occupation"
+    t.text     "bio"
+    t.text     "specialty"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_profiles_on_user_id"
+  end
+
+  create_table "tickets", force: :cascade do |t|
+    t.integer  "event_id"
+    t.string   "name"
+    t.text     "description"
+    t.integer  "price"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.index ["event_id"], name: "index_tickets_on_event_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -33,6 +85,7 @@ ActiveRecord::Schema.define(version: 20170410085333) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "time_zone"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
