@@ -5,35 +5,42 @@
 </p>
 
 
-   <%= form_tag bulk_update_admin_events_path, :class => "form-inline" do %>
+<%= form_tag bulk_update_admin_events_path, :class => "form-inline" do %>
 
 <table class="table">
+  <thead>
 <tr>
-       <th><%= check_box_tag "全选", "1", false, :id => "toggle_all" %></th>
+   <th><%= check_box_tag "全选", "1", false, :id => "toggle_all" %></th>
 
   <th>Event Name</th>
   <th>Actions</th>
 </tr>
+</thead>
+<tbody class="sortable">
 <% @events.each do |event| %>
-  <tr>
+    <tr data-reorder-url="<%= reorder_admin_event_path(event) %>">
     <td>
         <%= check_box_tag "ids[]", event.id %>
-      </td>
-
-    <td><%= link_to event.name, admin_event_path(event) %></td>
+    </td>
     <td>
+      <span class="sortable_icon">☰</span>
+      <%= link_to event.name, admin_event_path(event) %>
+    </td>
       <td>
-   <%= link_to "上移", reorder_admin_event_path(event, :position => :up), :method => :post, :class => "btn btn-default" %>
-   <%= link_to "下移", reorder_admin_event_path(event, :position => :down), :method => :post, :class => "btn btn-default" %>
-   <%= link_to "置顶", reorder_admin_event_path(event, :position => :first), :method => :post, :class => "btn btn-default" %>
-   <%= link_to "置底", reorder_admin_event_path(event, :position => :last), :method => :post, :class => "btn btn-default" %>
-      <%= link_to "Tickets", admin_event_tickets_path(event), :class => "btn btn-default"%>
-      <%= link_to "Edit", edit_admin_event_path(event), :class => "btn btn-default" %>
-      <%= link_to "Delete", admin_event_path(event), :method => "delete", :data => { :confirm => "Are you sure?" }, :class => "btn btn-danger" %>
+       <%= link_to "置顶", reorder_admin_event_path(event, :position => :first), :method => :post, :class => "btn btn-default" %>
+       <%= link_to "置底", reorder_admin_event_path(event, :position => :last), :method => :post, :class => "btn btn-default" %>
+       <%= link_to "Tickets", admin_event_tickets_path(event), :class => "btn btn-default"%>
+       <%= link_to "Edit", edit_admin_event_path(event), :class => "btn btn-default" %>
+       <%= link_to "Delete", admin_event_path(event), :method => "delete", :data => { :confirm => "Are you sure?" }, :class => "btn btn-danger" %>
   </tr>
 <% end %>
+</tbody>
 </table>
-     <p><%= submit_tag "批次删除", :class => "btn btn-danger", :data => { :confirm => "Are you sure?" } %></p>
+     <p>
+     <%= select_tag :event_status, options_for_select( Event::STATUS.map{ |s| [t(s, :scope => "event.status"), s] }), :class => "form-control" %>
+     <%= submit_tag t(:bulk_update), :class => "btn btn-primary" %>
+     <%= submit_tag t(:bulk_delete), :class => "btn btn-danger", :data => { :confirm => "Are you sure?" } %>
+     </p>
    <% end %>
 
    <script>
@@ -45,4 +52,26 @@
          $("input[name='ids[]']").prop("checked", false);
        }
      })
-   </script>
+
+
+ $(".sortable").sortable({
+   axis: 'y',  //限制只能上下拖拉
+   items: 'tr',  //拖拉整个tr
+   cursor: 'move', //变更拖拉时的icon
+   handle: ".sortable_icon", //限制只有点☰才能开始拖拉，砍掉这行的话，会是整个tr都可以进行拖拉，你可以试试看
+   stop: function(e,ui){  //当拖拉结束时，会调用这个方法
+     ui.item.children('td').effect('highlight',{},1000)
+   },
+   update: function(e,ui){ //当拖拉结束并且DOM上的位置变更时，会调用这个方法
+     reorder_url = ui.item.data('reorder_url')
+     position = ui.item.index() //取得顺序
+     $.ajax({
+       type: 'POST',
+       url: reorder_url,
+       dataType: 'json',
+       data: {position: position}
+     })
+
+   }
+ });
+    </script>
