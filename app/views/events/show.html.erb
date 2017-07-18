@@ -6,4 +6,6 @@
 
 <h2><%= @event.category.try(:name )%></h2>
 
+<p><%= link_to "开始报名", new_event_registration_path(@event), :class => "btn btn-primary" %></p>
+
 <%= sanitize @event.description %>

@@ -1,0 +1,43 @@
+<h1><%= @event.name %></h1>
+
+<%= form_for [@event, Registration.new] do |f| %>
+
+<div class="form-group">
+  <%= f.label :ticket_id %>
+
+  <%= f.select :ticket_id, @event.tickets.map{ |t| [t.name, t.id] }, {}, :class => "form-control"  %>
+
+</div>
+
+<div class="form-group">
+  <%= f.label :name %>
+  <%= f.text_field :name, :class => "form-control" %>
+
+</div>
+
+<div class="form-group">
+  <%= f.label :email %>
+  <%= f.email_field :email, :class => "form-control" %>
+</div>
+
+<div class="form-group">
+  <%= f.label :cellphone %>
+  <%= f.text_field :cellphone, :class => "form-control" %>
+</div>
+
+<div class= "form-group">
+  <%= f.label :website  %>
+  <%= f.url_field :website, :class => "form-control" %>
+</div>
+
+<div class="form-group">
+  <%= f.label :bio %>
+  <%= f.text_area :bio, :class => "form-control" %>
+</div>
+
+<div class="form-group">
+  <%= f.submit "Submit", :class => "btn btn-primary" %>
+</div>
+
+
+<% end %>

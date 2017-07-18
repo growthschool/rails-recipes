@@ -12,7 +12,7 @@ class Admin::EventTicketsController < AdminController
   def create
     @ticket = @event.tickets.new(ticket_params)
     if @ticket.save
-      redirect_to admin_event_ticket_path(@event)
+      redirect_to admin_event_tickets_path(@event)
     else
       render "new"
     end
@@ -47,5 +47,5 @@ class Admin::EventTicketsController < AdminController
   def ticket_params
     params.require(:ticket).permit(:name,:price, :description)
   end
-  
+
 end
