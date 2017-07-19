@@ -1,0 +1,16 @@
+"zh-CN":
+  bulk_update: 批次编辑
+  bulk_delete: 批次删除
+  event_list: 活动列表
+  admin:
+    event_list: 活动列表管理
+  hello: "亲～ %{name} 你好："
+  event:
+    status:
+      draft:  草稿
+      public:  公开
+      private:  私密
+  registration:
+    status:
+      pending: 报名尚未完成
+      confirmed: 报名成功
