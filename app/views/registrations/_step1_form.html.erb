@@ -1,0 +1,18 @@
+<div class="form-group">
+  <%= f.label :ticket_id %>
+  <%= f.select :ticket_id, @event.tickets.map{ |t| [t.name, t.id] }, {}, :class => "form-control" %>
+</div>
+
+<div class="form-group">
+  <%= f.submit "Save & Next", :class => "btn btn-primary" %>
+</div>
+
+
+<!-- <div class="form-group">
+  <%= f.label :ticket_id %>
+  <%= f.select :ticket_id, @event.tickets.map{ |t| [t.name, t.id] }, {}, :class => "form-control" %>
+</div>
+
+<div class="form-group">
+  <%= f.submit "Save & Next", :class => "btn btn-primary" %>
+</div> -->
