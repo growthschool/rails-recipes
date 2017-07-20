@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170713095456) do
+ActiveRecord::Schema.define(version: 20170719170521) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -62,6 +62,25 @@ ActiveRecord::Schema.define(version: 20170713095456) do
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
+  create_table "registrations", force: :cascade do |t|
+    t.string   "status",     default: "pending"
+    t.string   "uuid"
+    t.integer  "event_id"
+    t.integer  "ticket_id"
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "email"
+    t.string   "cellphone"
+    t.string   "website"
+    t.text     "bio"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.index ["event_id"], name: "index_registrations_on_event_id"
+    t.index ["ticket_id"], name: "index_registrations_on_ticket_id"
+    t.index ["user_id"], name: "index_registrations_on_user_id"
+    t.index ["uuid"], name: "index_registrations_on_uuid", unique: true
+  end
+
   create_table "tickets", force: :cascade do |t|
     t.integer  "event_id"
     t.string   "name"
@@ -88,6 +107,17 @@ ActiveRecord::Schema.define(version: 20170713095456) do
     t.string   "time_zone"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "versions", force: :cascade do |t|
+    t.string   "item_type",                         null: false
+    t.integer  "item_id",                           null: false
+    t.string   "event",                             null: false
+    t.string   "whodunnit"
+    t.text     "object",         limit: 1073741823
+    t.datetime "created_at"
+    t.text     "object_changes", limit: 1073741823
+    t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
   end
 
 end

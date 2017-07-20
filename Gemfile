@@ -48,6 +48,7 @@ gem 'bootstrap-datepicker-rails'
 gem 'pry'
 gem 'ranked-model'
 gem 'jquery-ui-rails'
+gem 'paper_trail'
 
 group :development, :test do
   gem 'rspec-rails'
