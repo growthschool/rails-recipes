@@ -1,4 +1,8 @@
 "zh-CN":
+  registration:
+    status:
+      pending: 报名尚未完成
+      confirmed: 报名成功
   event_list: 活动列表
   admin:
     event_list: 活动列表管理

@@ -49,6 +49,7 @@ gem 'pry'
 gem 'ranked-model'
 gem 'jquery-ui-rails'
 gem 'paper_trail'
+gem 'kaminari'
 
 group :development, :test do
   gem 'rspec-rails'
