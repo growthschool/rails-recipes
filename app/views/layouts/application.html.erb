@@ -29,9 +29,12 @@
               <li class="active"><%= link_to "活動一覽", events_path %></li>
             </ul>
           <ul class="nav navbar-nav navbar-right">
+
             <% if current_user %>
+
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> <%= current_user.display_name %> <span class="caret"></span></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> <%= t( "hello", :name => current_user.display_name) %> <span class="caret"></span></a>
+
                 <ul class="dropdown-menu">
                   <li><%= link_to('管理員面板', admin_events_path) %></li>
                   <li><%= link_to('修改密碼', edit_registration_path(:user)) %></li>
@@ -52,6 +55,9 @@
 
 
       <%= yield %>
+       <%= link_to "FAQ", faq_path %>
+       <%= link_to "中文版", :controller => controller_name, :action => action_name, :locale => "zh-CN" %>
+       <%= link_to "English", :controller => controller_name, :action => action_name, :locale => "en" %>
     </div>
   </body>
 </html>
