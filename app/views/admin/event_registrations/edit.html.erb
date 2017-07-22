@@ -1,0 +1,12 @@
+<h1>Edit Registration</h1>
+
+<%= form_for [:admin, @event, @registration] do |f| %>
+
+  <%= render :partial => "form", :locals => { :f => f } %>
+
+  <div class="form-group">
+    <%= f.submit "Update", :class => "btn btn-primary" %>
+    <%= link_to "Cancel", admin_event_registrations_path(@event) %>
+  </div>
+
+<% end %>
