@@ -1,0 +1,40 @@
+<% if @registration.errors.any? %>
+  <div id="error_explanation">
+    <ul>
+    <% @registration.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<div class="form-group">
+  <%= f.label :ticket_id %>
+  <%= f.select :ticket_id, @event.tickets.map{ |t| [t.name, t.id] }, {}, :class => "form-control" %>
+</div>
+
+<div class="form-group">
+  <%= f.label :name, "姓名", :class => "control-label" %>
+  <%= f.text_field :name, :class => "form-control" , :required => true , :autofocus => true %>
+</div>
+
+<div class="form-group">
+ <%= f.label :email, "E-mail", :class => "control-label" %>
+ <%= f.email_field :email, :class => "form-control", :required => true %>
+</div>
+
+<div class="form-group">
+  <%= f.label :cellphone, "电话", :class => "control-label" %>
+  <%= f.text_field :cellphone, :class => "form-control",:required => true %>
+
+</div>
+
+<div class="form-group">
+  <%= f.label :website %>
+  <%= f.url_field :website, :class => "form-control" %>
+</div>
+
+<div class="form-group">
+  <%= f.label :bio %>
+  <%= f.text_area :bio, :class => "form-control", :required => true %>
+</div>
