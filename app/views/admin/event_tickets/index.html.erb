@@ -5,13 +5,15 @@
 </p>
 
 <table class="table">
+
   <tr>
     <th>Name</th>
     <th>Price</th>
     <th>Description</th>
     <th>Actions</th>
   </tr>
-<% @tickets.each do |tricket| %>
+
+<% @tickets.each do |ticket| %>
   <tr>
     <td><%= ticket.name %></td>
     <td><%= ticket.price %></td>

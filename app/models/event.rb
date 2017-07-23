@@ -2,6 +2,8 @@ class Event < ApplicationRecord
 
   has_many :registrations, :dependent => :destroy
   has_many :tickets, :dependent => :destroy
+  has_many :attachments, :class_name => "EventAttachment", :dependent => :destroy
+  accepts_nested_attributes_for :attachments, :allow_destroy => true, :reject_if => :all_blank
   accepts_nested_attributes_for :tickets, :allow_destroy => true, :reject_if => :all_blank
   belongs_to :category, :optional => true
 
@@ -11,8 +13,14 @@ class Event < ApplicationRecord
      validates_format_of :friendly_id, :with => /\A[a-z0-9\-]+\z/
 
 
+    scope :only_public, -> { where( :status => "public" ) }
+    scope :only_available, -> { where( :status => ["public", "private"] ) }
 
  before_validation :generate_friendly_id, :on => :create
+
+ mount_uploader :logo, EventLogoUploader
+ mount_uploaders :images, EventImageUploader
+ serialize :images, JSON
 
  include RankedModel
  ranks :row_order
