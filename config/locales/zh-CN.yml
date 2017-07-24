@@ -12,3 +12,7 @@
       draft:  草稿
       public:  公开
       private:  私密
+  user:
+    role:
+      admin: 超级管理员
+      editor: 活动管理员
