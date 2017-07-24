@@ -25,6 +25,7 @@
     <%= f.select :group_ids, Group.all.map{ |g| [g.name, g.id] }, {}, :multiple => true, :class => "form-control" %>
   </div>
 
+
  <script>
    $("#user_group_ids").select2()
  </script>

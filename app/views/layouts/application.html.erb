@@ -37,6 +37,8 @@
 
                 <ul class="dropdown-menu">
                   <li><%= link_to('管理員面板', admin_events_path) %></li>
+                  <li><%= link_to('我的个人资料', user_path) %></li>
+                  <li><%= link_to('修改个人资料', edit_user_path) %></li>
                   <li><%= link_to('修改密碼', edit_registration_path(:user)) %></li>
                   <li><%= link_to('登出', destroy_user_session_path, :method => :delete) %></li>
                 </ul>
