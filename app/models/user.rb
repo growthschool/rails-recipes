@@ -18,4 +18,11 @@ class User < ApplicationRecord
 
   ROLES = ["admin", "editor"]
 
+   def is_admin?
+     self.role == "admin"
+   end
+
+   def is_editor?
+     ["admin","editor"].include?(self.role)  # 如果是 admin 的话，当然也有 editor的权限
+   end
 end
