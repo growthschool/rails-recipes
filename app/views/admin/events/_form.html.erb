@@ -16,6 +16,105 @@
 </div>
 
 <div class="form-group">
-  <%= f.label :description %>
-  <%= f.text_area :description, :class => "form-control" %>
+  <%= f.label :friendly_id %>
+  <%= f.text_field :friendly_id, :required => true, :class => "form-control" %>
+  <p class="help-block">限小写英文数字及横线，将作为网址的一部分 </p>
 </div>
+
+<div class="form-group">
+  <%= f.label :category_id %>
+  <%= f.select :category_id, Category.all.map{ |c| [c.name, c.id] }, {}, :class => "form-control" %>
+</div>
+
+<div class="btn-group" data-toggle="buttons">
+    <% Event::STATUS.each do |status| %>
+      <label class="btn btn-default <%= (status == f.object.status)? 'active' : '' %>">
+        <%= f.radio_button :status, status %>
+        <%= t(status, :scope => "event.status") %>
+      </label>
+    <% end %>
+</div>
+
+<div class="form-group">
+    <%= f.label :logo %>
+    <%= f.file_field :logo, :class => "form-control" %>
+    <% if f.object.logo.present? %>
+      <label>
+        <%= f.check_box :remove_logo %> 删除图档
+      </label>
+      <%= link_to f.object.logo.filename, f.object.logo.url, :target => "_blank" %>
+    <% end %>
+  </div>
+
+ <div class="form-group">
+   <%= f.label :images %>
+   <%= f.file_field :images, :multiple => true, :class => "form-control" %>
+   <% if f.object.images.present? %>
+     <label>
+       <%= f.check_box :remove_images %> 删除图档
+     </label>
+     <% f.object.images.each do |i| %>
+       <%= link_to i.filename, i.url, :target => "_blank" %>
+     <% end %>
+  <% end %>
+ </div>
+
+<div class="form-group">
+    <%= f.label :description %>
+    <%= f.text_area :description, :class => "form-control" %>
+</div>
+
+<div class="form-group">
+     <%= f.label :category_id %>
+     <%= f.select :category_id, Category.all.map{ |c| [c.name, c.id] }, {}, :class => "form-control" %>
+</div>
+
+ <%= f.nested_fields_for :attachments do |ff| %>
+  <fieldset style="border-left: 5px solid #bbb; margin-bottom: 10px; padding: 10px;">
+    <legend>Attachment</legend>
+     <div class="form-group">
+       <%= ff.label :attachment %>
+       <%= ff.file_field :attachment, :class => "form-control" %>
+       <% if ff.object.attachment.present? %>
+         已上传档案 <%= link_to ff.object.description, ff.object.attachment.url, :target => "_blank" %>
+       <% end %>
+     </div>
+
+     <div class="form-group">
+       <%= ff.label :description %>
+       <%= ff.text_field :description, :class => "form-control" %>
+     </div>
+
+     <%= ff.remove_nested_fields_link "移除这个档案", :class => "btn btn-danger" %>
+   </fieldset>
+ <% end %>
+ <p class="text-right">
+   <%= f.add_nested_fields_link :attachments, "新增档案", :class => "btn btn-default" %>
+ </p>
+
+   <%= f.nested_fields_for :tickets do |ff| %>
+     <fieldset style="border-left: 5px solid #bbb; margin-bottom: 10px; padding: 10px;">
+       <legend>Ticket</legend>
+       <div class="form-group">
+         <%= ff.label :name %>
+         <%= ff.text_field :name, :class => "form-control" %>
+       </div>
+
+       <div class="form-group">
+         <%= ff.label :price %>
+         <%= ff.number_field :price, :class => "form-control" %>
+       </div>
+
+       <div class="form-group">
+         <%= ff.label :description %>
+         <%= ff.text_area :description, :class => "form-control" %>
+       </div>
+     </fieldset>
+     <%= ff.remove_nested_fields_link "移除这个票种", :class => "btn btn-danger" %>
+   <% end %>
+    <p class="text-right">
+       <%= f.add_nested_fields_link :tickets, "新增票种", :class => "btn btn-default" %>
+    </p>
+<script>
+  $("#event_category_id").select2( { theme: "bootstrap"} );
+</script>
