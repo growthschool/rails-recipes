@@ -1,6 +1,43 @@
+<script src="https://cdn.bootcss.com/Chart.js/2.5.0/Chart.bundle.js"></script>
 <h1><%= @event.name %></h1>
 <p>
   <%= link_to "打開前台", event_path(@event), :target => "_blank", :class => "btn btn-primary" %>
 </p>
 
-<%= sanitize @event.description %>
+ <canvas id="myChart1" width="400" height="200"></canvas>
+  <script>
+  var ctx1 = document.getElementById("myChart1");
+  var myChart1 = new Chart(ctx1, {
+      type: 'bar',
+      data: <%= raw @data1.to_json %>,
+      options: {
+          scales: {
+              yAxes: [{
+                  ticks: {
+                      beginAtZero:true
+                  }
+              }]
+          }
+      }
+  });
+  </script>
+
+  <canvas id="myChart2" width="400" height="200"></canvas>
+  <script>
+  var ctx2 = document.getElementById("myChart2");
+  var myChart2 = new Chart(ctx2, {
+    type: 'bar',
+    data: <%= raw @data2.to_json %>
+    options: {
+       scales: {
+         yAxes: [{
+           ticks: {
+             beginAtZero:true
+           }
+         }]
+       }
+    }
+  });
+ </script>
+  
+  <hr>
