@@ -1,20 +1,44 @@
-<h1>Admin Event List</h1>
+<h1><%= t("admin.event_list") %></h1>
 
 <p class="text-right">
 <%= link_to "New Event", new_admin_event_path, :class => "btn btn-primary" %>
 </p>
-
+<%= form_tag bulk_update_admin_events_path, :class => "form-inline" do %>
 <table class="table">
 <tr>
+  <th><%= check_box_tag "全选", "1", false, :id => "toggle_all" %></th>
   <th>Event Name</th>
   <th>Actions</th>
 </tr>
 <% @events.each do |event| %>
   <tr>
+    <td>
+      <%= check_box_tag "ids[]", event.id %>
+    </td>
     <td><%= link_to event.name, admin_event_path(event) %></td>
     <td>
+      <%= link_to "Tickets", admin_event_tickets_path(event), :class => "btn btn-default" %>
       <%= link_to "Edit", edit_admin_event_path(event), :class => "btn btn-default" %>
       <%= link_to "Delete", admin_event_path(event), :method => "delete", :data => { :confirm => "Are you sure?" }, :class => "btn btn-danger" %>
   </tr>
 <% end %>
 </table>
+    <p>
+    <%= select_tag :event_status, options_for_select( Event::STATUS.map{ |s| [t(s, :scope =>  "event.status"), s] }), :class => "form-control" %>
+
+    <%= submit_tag t(:bulk_update), :class => "btn btn-primary" %>
+    <%= submit_tag t(:bulk_delete), :class => "btn btn-danger", :data => { :confirm => "Are you  sure?" } %>
+    </p>
+
+  <% end %>
+
+  <script>
+    // 这个 javascript 会绑事件在 #toggle_all 核选方块上，来做全选效果
+    $("#toggle_all").click(function(){
+      if ( $(this).prop("checked") ) {
+        $("input[name='ids[]']").prop("checked", true);
+      } else {
+        $("input[name='ids[]']").prop("checked", false);
+      }
+    })
+  </script>

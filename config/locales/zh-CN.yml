@@ -1,0 +1,14 @@
+"zh-CN":
+    hello: "亲~ %{name} 你好: "
+    event_list: 活动列表
+    admin:
+      event_list: 活动列表管理
+
+    event:
+      status:
+        draft: 草稿
+        public: 公开
+        private: 私密
+
+    bulk_update: 批次编辑
+    bulk_delete: 批次删除
