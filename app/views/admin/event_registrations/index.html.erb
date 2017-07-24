@@ -72,3 +72,8 @@
 </table>
 
 <%= paginate @registrations %>
+
+<p>
+  <%= link_to "汇出 CSV", admin_event_registrations_path(:format => :csv), :class => "btn btn-default" %>
+  <%= link_to "汇出 Excel", admin_event_registrations_path(:format => :xlsx), :class => "btn btn-default" %>
+</p>

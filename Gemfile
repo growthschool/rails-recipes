@@ -53,6 +53,9 @@ gem 'kaminari'
 gem 'ransack'
 gem 'carrierwave'
 gem "mini_magick"
+gem 'rubyzip'
+gem 'axlsx'
+gem 'axlsx_rails'
 
 group :development, :test do
   gem 'rspec-rails'
