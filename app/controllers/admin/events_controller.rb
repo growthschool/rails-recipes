@@ -1,4 +1,6 @@
 class Admin::EventsController < AdminController
+  before_action :require_editor!
+
 
   def index
     @events = Event.rank(:row_order).all

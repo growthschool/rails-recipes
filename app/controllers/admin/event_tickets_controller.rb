@@ -1,5 +1,7 @@
 class Admin::EventTicketsController < AdminController
   before_action :find_event
+  before_action :require_editor!
+
 
   def index
     @tickets = @event.tickets
@@ -47,5 +49,5 @@ class Admin::EventTicketsController < AdminController
   def ticket_params
     params.require(:ticket).permit(:name,:price, :description)
   end
-  
+
 end
