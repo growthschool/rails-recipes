@@ -1,0 +1,8 @@
+<h1><%= @event.name %></h1>
+<h2>Step 1</h2>
+
+<%= form_for [@event, @registration], :url => update_step1_event_registration_path(@event,@registration) do |f| %>
+
+  <%= render :partial => "step1_form", :locals => { :f => f } %>
+
+  <% end %>

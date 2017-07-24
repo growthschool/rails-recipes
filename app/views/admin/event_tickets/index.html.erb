@@ -1,0 +1,26 @@
+<h1><%= @event.name %> / Tickets</h1>
+
+<p class="text-right">
+  <%= link_to "New ticket", new_admin_event_ticket_path(@event), :class => "btn btn-primary" %>
+</p>
+
+<table class="table">
+
+  <tr>
+    <th>Name</th>
+    <th>Price</th>
+    <th>Description</th>
+    <th>Actions</th>
+  </tr>
+
+<% @tickets.each do |ticket| %>
+  <tr>
+    <td><%= ticket.name %></td>
+    <td><%= ticket.price %></td>
+    <td><%= simple_format ticket.description %></td>
+    <td>
+     <%= link_to "Edit", edit_admin_event_ticket_path(@event, ticket), :class => "btn btn-default" %>
+     <%= link_to "Delete", admin_event_ticket_path(@event, ticket), :method => "delete", :data => { :confirm => "Are you sure?" }, :class => "btn btn-danger" %>
+ </tr>
+<% end %>
+</table>
