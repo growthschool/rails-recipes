@@ -30,7 +30,7 @@
               <% end %>
               <!-- <% if current_user.role == "admin" %> -->
               <% if current_user.is_admin? %>
-                <li class="active"><%= link_to('用户管理',admin_users_path)%></li>
+                <li><%= link_to('用户管理',admin_users_path)%></li>
               <% end %>
             <% end %>
           </ul>
