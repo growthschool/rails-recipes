@@ -19,3 +19,8 @@
   notification:
     subject:
       confirmed_registration: "报名成功: %{name}"
+  registration:
+    status:
+      pending: 报名尚未完成
+      confirmed: 报名成功
+      cancelled: 报名已取消
