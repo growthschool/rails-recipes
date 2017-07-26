@@ -1,15 +1,13 @@
+
+
 <!DOCTYPE html>
 <html>
   <head>
     <title>RailsRecipes</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'admin', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'admin', 'data-turbolinks-track': 'reload' %>
-  </head>
-
+    <%= javascript_include_tag 'admin' %>  </head>
   <body>
-
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -24,14 +22,8 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <% if current_user %>
-              <!-- <% if current_user.role == "admin" || current_user.role == "editor" %> -->
-              <% if current_user.is_editor? %>
-                <li class="active"><%= link_to('活動管理', admin_events_path) %></li>
-              <% end %>
-              <!-- <% if current_user.role == "admin" %> -->
-              <% if current_user.is_admin? %>
-                <li><%= link_to('用户管理',admin_users_path)%></li>
-              <% end %>
+              <li class="active"><%= link_to('活動管理', admin_events_path) %></li>
+              <li class="active"><%= link_to('用户管理', admin_users_path) %></li>
             <% end %>
           </ul>
           <ul class="nav navbar-nav navbar-right">
@@ -52,15 +44,14 @@
         </div><!--/.nav-collapse -->
       </div>
     </nav>
+    <div class="container" style="padding-top: 60px">
+      <% if notice %>
+         <p class="notice alert-success"><%= notice %></p>
+       <% end %>
 
-     <div class="container" style="padding-top: 60px">
-       <% if notice %>
-          <p class="notice alert-success"><%= notice %></p>
-        <% end %>
-
-        <% if alert %>
-          <p class="alert alert-danger"><%= alert %></p>
-        <% end %>
+       <% if alert %>
+         <p class="alert alert-danger"><%= alert %></p>
+       <% end %>
       <%= yield %>
     </div>
   </body>
