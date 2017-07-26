@@ -1,15 +1,13 @@
+
+
 <!DOCTYPE html>
 <html>
   <head>
     <title>RailsRecipes</title>
     <%= csrf_meta_tags %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
-
+    <%= stylesheet_link_tag    'admin', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'admin' %>  </head>
   <body>
-
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -25,6 +23,7 @@
           <ul class="nav navbar-nav">
             <% if current_user %>
               <li class="active"><%= link_to('活動管理', admin_events_path) %></li>
+              <li class="active"><%= link_to('用户管理', admin_users_path) %></li>
             <% end %>
           </ul>
           <ul class="nav navbar-nav navbar-right">
@@ -45,13 +44,14 @@
         </div><!--/.nav-collapse -->
       </div>
     </nav>
+    <div class="container" style="padding-top: 60px">
+      <% if notice %>
+         <p class="notice alert-success"><%= notice %></p>
+       <% end %>
 
-    <div class="container">
-
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
-
-
+       <% if alert %>
+         <p class="alert alert-danger"><%= alert %></p>
+       <% end %>
       <%= yield %>
     </div>
   </body>

@@ -1,0 +1,7 @@
+<p>Hi <%= @registration.name %></p>
+<p>您已经完成报名</p>
+ <p><%= link_to @event.name, event_url(@event) %></p>
+
+ <% content_for :action do %>
+   <%= link_to "浏览报名结果", event_registration_url(@event, @registration), :class => "btn-primary", :itemprop => "url" %>
+ <% end %>

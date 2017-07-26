@@ -1,0 +1,2 @@
+class RegistrationImport < ApplicationRecord
+end

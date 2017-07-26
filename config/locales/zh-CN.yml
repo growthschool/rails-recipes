@@ -1,0 +1,26 @@
+"zh-CN":
+  registration:
+    status:
+      pending: 报名尚未完成
+      confirmed: 报名成功
+  event_list: 活动列表
+  admin:
+    event_list: 活动列表管理
+  hello: "亲～ %{name} 你好："
+  event:
+    status:
+      draft:  草稿
+      public:  公开
+      private:  私密
+  user:
+    role:
+      admin: 超级管理员
+      editor: 活动管理员
+  notification:
+    subject:
+      confirmed_registration: "报名成功: %{name}"
+  registration:
+    status:
+      pending: 报名尚未完成
+      confirmed: 报名成功
+      cancelled: 报名已取消
