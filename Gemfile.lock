@@ -74,6 +74,9 @@ GEM
     capistrano-rails (1.2.3)
       capistrano (~> 3.1)
       capistrano-bundler (~> 1.1)
+    capistrano-sidekiq (0.10.0)
+      capistrano
+      sidekiq (>= 3.4)
     carrierwave (1.0.0)
       activemodel (>= 4.0.0)
       activesupport (>= 4.0.0)
@@ -305,6 +308,7 @@ DEPENDENCIES
   byebug
   capistrano-passenger
   capistrano-rails
+  capistrano-sidekiq
   carrierwave
   ckeditor
   coffee-rails (~> 4.2)
