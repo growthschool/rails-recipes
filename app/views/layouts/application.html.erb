@@ -5,7 +5,13 @@
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <% if params[:js] == "async" %>
+      <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload', :async => true %>
+    <% elsif params[:js] == "defer" %>
+      <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload', :defer => true %>
+    <% elsif params[:js].blank? %>
+      <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <% end %>
   </head>
 
   <body>
@@ -64,5 +70,8 @@
       <%= link_to "English", :controller => controller_name, :action => action_name, :locale => "en" %>
 
     </div>
+    <% if params[:js] == "bottom" %>
+      <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <% end %>
   </body>
 </html>
