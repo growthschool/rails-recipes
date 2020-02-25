@@ -4,7 +4,7 @@
   <% @events.each do |event| %>
     <li>
       <%= link_to event.name, event_path(event) %>
-      <%= event.created_at %>
+      <%= event.created_at.to_s(:ymdw) %>
     </li>
   <% end %>
 </ul>

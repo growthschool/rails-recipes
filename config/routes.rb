@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   resources :events
 
+  resource :user
+
   namespace :admin do
     root "events#index"
     resources :events
