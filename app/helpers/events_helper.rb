@@ -3,8 +3,10 @@ module EventsHelper
     case event.status
     when "draft"
       "草稿"
+    when "public"
+      "公开"
     else
-      ""
+      "私密"
     end
   end
 end
