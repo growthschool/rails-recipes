@@ -1,5 +1,7 @@
 class Event < ApplicationRecord
 
+ belongs_to :category, :optional => true
+
  before_validation :generate_friendly_id, :on => :create
 
  STATUS = ["draft", "public", "private"]
