@@ -13,6 +13,7 @@
   <tr>
     <td><%= link_to event.name, admin_event_path(event) %></td>
     <td>
+      <%= link_to "Tickets", admin_event_tickets_path(event), :class => "btn btn-default" %>
       <%= link_to "Edit", edit_admin_event_path(event), :class => "btn btn-default" %>
       <%= link_to "Delete", admin_event_path(event), :method => "delete", :data => { :confirm => "Are you sure?" }, :class => "btn btn-danger" %>
   </tr>
