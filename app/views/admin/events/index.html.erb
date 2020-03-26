@@ -25,7 +25,11 @@
 <% end %>
 </table>
 
-<p><%= submit_tag "批次删除", :class => "btn btn-danger", :data => { :confirm => "Are you sure?" } %></p>
+<p>
+  <%= select_tag :event_status, options_for_select( Event::STATUS.map{ |s| [t(s, :scope => + "event.status"), s] } ), :class => "form-control" %>
+  <%= submit_tag t(:bulk_update), :class => "btn btn-primary" %>
+  <%= submit_tag t(:bulk_delete), :class => "btn btn-danger", :data => { :confirm => "Are you sure?" } %>
+</p>
 <% end %>
 
 <script>
