@@ -11,6 +11,8 @@ module RailsRecipes
 
     config.i18n.default_locale = "zh-CN"
     config.time_zone = "Beijing"
+    config.action_view.sanitized_allowed_tags = Rails::Html::WhiteListSanitizer.allowed_tags + %w(table tr td)
+    config.action_view.sanitized_allowed_attributes = Rails::Html::WhiteListSanitizer.allowed_attributes + %w(style border)
     Time::DATE_FORMATS.merge!(:default => '%Y/%m/%d %I:%M %p', :ymd => '%Y/%m/%d', :ymdw => '%Y/%m/%d %a')
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers

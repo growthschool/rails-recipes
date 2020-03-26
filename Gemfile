@@ -46,6 +46,7 @@ gem "nested_form_fields"
 gem 'bootstrap-datepicker-rails'
 gem 'execjs'
 gem 'therubyracer', :platforms => :ruby
+gem 'ckeditor', '4.2.4'
 
 
 group :development, :test do
