@@ -47,6 +47,7 @@ gem 'bootstrap-datepicker-rails'
 gem 'execjs'
 gem 'therubyracer', :platforms => :ruby
 gem 'ckeditor', '4.2.4'
+gem 'ranked-model'
 
 
 group :development, :test do
