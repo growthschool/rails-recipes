@@ -48,6 +48,7 @@ gem 'execjs'
 gem 'therubyracer', :platforms => :ruby
 gem 'ckeditor', '4.2.4'
 gem 'ranked-model'
+gem 'jquery-ui-rails', '>= 5.0.0'
 
 
 group :development, :test do
