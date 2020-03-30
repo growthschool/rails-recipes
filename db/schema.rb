@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200327082821) do
+ActiveRecord::Schema.define(version: 20200328040415) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -60,6 +60,25 @@ ActiveRecord::Schema.define(version: 20200327082821) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_profiles_on_user_id"
+  end
+
+  create_table "registrations", force: :cascade do |t|
+    t.string   "status",     default: "pending"
+    t.string   "uuid"
+    t.integer  "event_id"
+    t.integer  "ticket_id"
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "email"
+    t.string   "cellphone"
+    t.string   "website"
+    t.text     "bio"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.index ["event_id"], name: "index_registrations_on_event_id"
+    t.index ["ticket_id"], name: "index_registrations_on_ticket_id"
+    t.index ["user_id"], name: "index_registrations_on_user_id"
+    t.index ["uuid"], name: "index_registrations_on_uuid", unique: true
   end
 
   create_table "tickets", force: :cascade do |t|
