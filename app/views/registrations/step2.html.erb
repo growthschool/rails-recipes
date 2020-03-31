@@ -1,29 +1,33 @@
 <h1><%= @event.name %></h1>
 <h2>Step 2</h2>
 
-<% if @registration.errors.any? %>
-  <ul>
-    <% @registration.errors.full_messages.each do |error| %>
-      <li><%= error %></li>
-    <% end %>
-  </ul>
-<% end %>
-
 <%= form_for @registration, :url => update_step2_event_registration_path(@event, @registration) do |f| %>
 
-  <div class="form-group">
-    <%= f.label :name %>
+  <div class="form-group <%= (f.object.errors[:name].any?)? "has-error" : "" %>">
+    <%= f.label :name, "姓名", :class => "control-label" %>
     <%= f.text_field :name, :class => "form-control" %>
+
+    <% if f.object.errors[:name] %>
+      <span class="help-block"><%= safe_join(f.object.errors[:name], "、") %></span>
+    <% end %>
   </div>
 
-  <div class="form-group">
-    <%= f.label :email %>
+  <div class="form-group <%= (f.object.errors[:email].any?)? "has-error" : "" %>">
+    <%= f.label :email, "邮箱", :class => "control-label" %>
     <%= f.email_field :email, :class => "form-control" %>
+
+    <% if f.object.errors[:email] %>
+      <span class="help-block"><%= safe_join(f.object.errors[:email], "、") %></span>
+    <% end %>
   </div>
 
-  <div class="form-group">
-    <%= f.label :cellphone %>
+  <div class="form-group <%= (f.object.errors[:cellphone].any?)? "has-error" : "" %>">
+    <%= f.label :cellphone, "电话", :class => "control-label" %>
     <%= f.text_field :cellphone, :class => "form-control" %>
+
+    <% if f.object.errors[:cellphone] %>
+      <span class="help-block"><%= safe_join(f.object.errors[:cellphone], "、") %></span>
+    <% end %>
   </div>
 
   <div class="form-group">
