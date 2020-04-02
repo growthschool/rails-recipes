@@ -4,7 +4,7 @@
 
 <div class="form-group">
   <%= f.label :status %>
-  <%= f.select :status, Registration::STATUS.map{ |s| [t(s, :scope => "event.status"), s] }, {}, :class => "form-control" %>
+  <%= f.select :status, Registration::STATUS.map{ |s| [t(s, :scope => "registration.status"), s] }, {}, :class => "form-control" %>
 </div>
 
 <div class="form-group">
@@ -35,6 +35,10 @@
 <div class="form-group">
   <%= f.label :bio %>
   <%= f.text_area :bio, :class => "form-control" %>
+</div>
+
+<div class="form-group">
+  <%= f.submit "Submit", :class => "btn btn-primary" %>
 </div>
 
 <% end %>

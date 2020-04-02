@@ -23,6 +23,22 @@ class Admin::EventRegistrationsController < ApplicationController
     end
   end
 
+  def edit
+    @registration = @event.registrations.find_by_uuid(params[:id])
+  end
+
+  def update
+    @registration = @event.registrations.find_by_uuid(params[:id])
+    @registration.update(registration_params)
+
+    if @registration.save
+      flash[:notice] = "Updated Successfully"
+      redirect_to admin_event_registrations_path(@event)
+    else
+      render "edit"
+    end
+  end
+
   def destroy
     @registration = @event.registrations.find_by_uuid(params[:id])
     @registration.destroy
