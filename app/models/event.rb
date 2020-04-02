@@ -21,6 +21,9 @@ class Event < ApplicationRecord
  validates_uniqueness_of :friendly_id
  validates_format_of :friendly_id, :with => /\A[a-z0-9\-]+\z/
 
+ scope :only_public, -> { where( :status => "public" ) }
+ scope :only_available, -> { where( :status => ["public", "private"] ) }
+
  def to_param
    self.friendly_id
  end

@@ -125,6 +125,8 @@ GEM
     nokogiri (1.7.1)
       mini_portile2 (~> 2.1.0)
     orm_adapter (0.5.0)
+    polyamorous (2.3.0)
+      activerecord (>= 5.0)
     puma (3.8.2)
     rack (2.0.1)
     rack-test (0.6.3)
@@ -158,6 +160,12 @@ GEM
     rake (12.0.0)
     ranked-model (0.4.6)
       activerecord (>= 4.2)
+    ransack (2.3.0)
+      actionpack (>= 5.0)
+      activerecord (>= 5.0)
+      activesupport (>= 5.0)
+      i18n
+      polyamorous (= 2.3.0)
     rb-fsevent (0.9.8)
     rb-inotify (0.9.8)
       ffi (>= 0.5.0)
@@ -252,6 +260,7 @@ DEPENDENCIES
   rails (~> 5.0.2)
   rails-i18n
   ranked-model
+  ransack
   rspec-rails
   sass-rails (~> 5.0)
   select2-rails
