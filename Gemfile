@@ -52,6 +52,9 @@ gem 'jquery-ui-rails', '>= 5.0.0'
 gem 'kaminari'
 gem 'ransack'
 gem 'paper_trail'
+gem 'rubyzip'
+gem 'axlsx'
+gem 'axlsx_rails'
 
 
 group :development, :test do
