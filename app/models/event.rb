@@ -1,6 +1,8 @@
 class Event < ApplicationRecord
 
  mount_uploader :logo, EventLogoUploader
+ mount_uploaders :images, EventImageUploader
+ serialize :images, JSON
 
  belongs_to :category, :optional => true
 
