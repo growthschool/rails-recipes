@@ -24,8 +24,12 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <% if current_user %>
-              <li class="active"><%= link_to('活動管理', admin_events_path) %></li>
-              <li class="active"><%= link_to("用户管理", admin_users_path) %></li>
+              <% if current_user.is_editor? %>
+                <li class="active"><%= link_to('活動管理', admin_events_path) %></li>
+              <% end %>
+              <% if current_user.is_admin? %>
+                <li class="active"><%= link_to("用户管理", admin_users_path) %></li>
+              <% end %>
             <% end %>
           </ul>
           <ul class="nav navbar-nav navbar-right">

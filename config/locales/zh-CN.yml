@@ -1,4 +1,8 @@
 "zh-CN":
+  user:
+    role:
+      admin: 超级管理员
+      editor: 活动管理员
   bulk_update: 批次编辑
   bulk_delete: 批次删除
   registration:
