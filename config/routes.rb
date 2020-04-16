@@ -26,6 +26,7 @@ Rails.application.routes.draw do
     end
 
     resources :events do
+      resources :registration_imports
       resources :registrations, :controller => "event_registrations" do
         collection do
           post :import
