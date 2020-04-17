@@ -1,0 +1,19 @@
+"zh-CN":
+  notification:
+    subject:
+      confirmed_registration: "报名成功: %{name}"
+  user:
+    role:
+      admin: 超级管理员
+      editor: 活动管理员
+  bulk_update: 批次编辑
+  bulk_delete: 批次删除
+  registration:
+    status:
+      pending: 报名尚未完成
+      confirmed: 报名成功
+      cancalled: 报名已取消
+  hello: "亲爱的%{name} 你好吖："
+  event_list: 活动列表
+  admin:
+    event_list: 活动列表管理

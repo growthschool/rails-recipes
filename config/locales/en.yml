@@ -20,4 +20,9 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  bulk_update: Bulk Update
+  bulk_delete: Bulk Delete
+  event_list: Event List
+  admin:
+    event_list: Admin Event List
+  hello: "Hi %{name},"

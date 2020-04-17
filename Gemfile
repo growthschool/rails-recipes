@@ -39,6 +39,27 @@ gem 'jbuilder', '~> 2.5'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+gem 'rails-i18n'
+gem "devise-i18n"
+gem "select2-rails"
+gem "nested_form_fields"
+gem 'bootstrap-datepicker-rails'
+gem 'execjs'
+gem 'therubyracer', :platforms => :ruby
+gem 'ckeditor', '4.2.4'
+gem 'ranked-model'
+gem 'jquery-ui-rails', '>= 5.0.0'
+gem 'kaminari'
+gem 'ransack'
+gem 'paper_trail'
+gem 'rubyzip'
+gem 'axlsx'
+gem 'axlsx_rails'
+gem 'carrierwave'
+gem "mini_magick"
+gem 'premailer-rails'
+gem 'sidekiq'
+
 
 group :development, :test do
   gem 'rspec-rails'
@@ -48,6 +69,7 @@ end
 
 group :development do
   gem 'faker'
+  gem 'letter_opener'
 
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console', '>= 3.3.0'
