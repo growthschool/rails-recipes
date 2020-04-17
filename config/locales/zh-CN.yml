@@ -12,6 +12,7 @@
     status:
       pending: 报名尚未完成
       confirmed: 报名成功
+      cancalled: 报名已取消
   hello: "亲爱的%{name} 你好吖："
   event_list: 活动列表
   admin:
