@@ -58,6 +58,7 @@ gem 'axlsx_rails'
 gem 'carrierwave'
 gem "mini_magick"
 gem 'premailer-rails'
+gem 'sidekiq'
 
 
 group :development, :test do
