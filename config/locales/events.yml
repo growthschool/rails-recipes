@@ -1,0 +1,6 @@
+zh-TW:
+  activerecord:
+    attributes:
+      event:
+        name: "活動名稱"
+        description: "描述"
