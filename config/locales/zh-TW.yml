@@ -1,4 +1,5 @@
 "zh-TW":
+  hello: "%{name} 你好："
   event_list: 活動列表
   admin:
     event_list: 活動列表管理
