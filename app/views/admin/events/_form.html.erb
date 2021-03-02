@@ -30,7 +30,7 @@
   <%= f.label :status %>
   <% # = f.select :status, Event::STATUS.map{ |status| [t(status, :scope => "event.status"), status] }, {} , :class => "form-control" %>
   <% Event::STATUS.each do |status| %>
-    <label>
+    <label class="btn btn-default <%= (status == f.object.status)? 'active' : '' %>" >
       <%= f.radio_button :status, status %>
       <%= t(status, :scope => "event.status") %>
     </label>
