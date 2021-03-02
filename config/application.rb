@@ -15,3 +15,5 @@ module RailsRecipes
     config.time_zone = "Taipei"
   end
 end
+
+Time::DATE_FORMATS.merge!(:default => "%Y/%m/%d %I:%M %p", :ymp => "%Y/%m/%d")
