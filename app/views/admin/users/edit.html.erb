@@ -19,7 +19,7 @@
 
   <div class="form-group">
     <%= f.label :group_ids %>
-    <%= f.collection_check_boxes(:group_ids, Group.all, :id, :name) %>
+    <%= f.select :group_ids, Group.all.map{ |group| [group.name, group.id]}, {}, multiple: true, class:"form-control" %>
   </div>
 
   <div class="form-group">
@@ -28,3 +28,7 @@
   </div>
 
 <% end %>
+
+<script>
+  $("#user_group_ids").select2()
+</script>
