@@ -1,0 +1,5 @@
+<h1>我的個人資料</h1>
+<p>Email: <%= @user.email %></p>
+<p>Time Zone: <%= @user.time_zone %></p>
+<p>Birthday: <%= @user.profile.birthday %></p>
+<p>Bio: <%= simple_format @user.profile.bio %></p>
