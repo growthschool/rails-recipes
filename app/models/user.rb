@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   has_many :memberships
   has_many :groups, through: :memberships
+  has_one :profile
 
   def display_name
     self.email.split("@").first
