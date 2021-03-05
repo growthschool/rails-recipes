@@ -18,6 +18,11 @@
   </div>
 
   <div class="form-group">
+    <%= f.label :group_ids %>
+    <%= f.collection_check_boxes(:group_ids, Group.all, :id, :name) %>
+  </div>
+
+  <div class="form-group">
     <%= f.submit "Update", class:"btn btn-primary" %>
     <%= link_to "Cancel", admin_users_path %>
   </div>
