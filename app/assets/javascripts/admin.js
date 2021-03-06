@@ -6,4 +6,4 @@
 //= require nested_form_fields
 //= require bootstrap-datepicker/core
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.zh-TW
-//= require_tree .
+//= require ckeditor/init
