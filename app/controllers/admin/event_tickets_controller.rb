@@ -19,6 +19,19 @@ class Admin::EventTicketsController < ApplicationController
     end
   end
 
+  def edit
+    @ticket = @event.tickets.find(params[:id])
+  end
+
+  def update
+    @ticket = @event.tickets.find(params[:id])
+    if @ticket.update(ticket_params)
+      redirect_to admin_event_tickets_path(@event)
+    else
+      render "edit"
+    end
+  end
+
   protected
 
   def find_event
