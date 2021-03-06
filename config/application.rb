@@ -13,6 +13,8 @@ module RailsRecipes
     # -- all .rb files in that directory are automatically loaded.
     config.i18n.default_locale = "zh-TW"
     config.time_zone = "Taipei"
+    config.action_view.sanitized_allowed_tags = Rails::Html::WhiteListSanitizer.allowed_tags + %w(table tr td)
+    config.action_view.sanitized_allowed_attributes = Rails::Html::WhiteListSanitizer.allowed_attributes + %w(style border)
   end
 end
 
