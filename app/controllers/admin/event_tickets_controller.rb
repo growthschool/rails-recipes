@@ -1,6 +1,6 @@
 class Admin::EventTicketsController < ApplicationController
   before_action :find_event
-
+  before_action :find_ticket, only:[:edit, :update, :destroy]
 
   def index
     @tickets = @event.tickets
@@ -20,11 +20,9 @@ class Admin::EventTicketsController < ApplicationController
   end
 
   def edit
-    @ticket = @event.tickets.find(params[:id])
   end
 
   def update
-    @ticket = @event.tickets.find(params[:id])
     if @ticket.update(ticket_params)
       redirect_to admin_event_tickets_path(@event)
     else
@@ -33,7 +31,6 @@ class Admin::EventTicketsController < ApplicationController
   end
 
   def destroy
-    @ticket = @event.tickets.find(params[:id])
     @ticket.destroy
     redirect_to admin_event_tickets_path(@event)
   end
@@ -42,6 +39,10 @@ class Admin::EventTicketsController < ApplicationController
 
   def find_event
     @event = Event.find_by_friendly_id!(params[:event_id])
+  end
+
+  def find_ticket
+    @ticket = @event.tickets.find(params[:id])
   end
 
   def ticket_params
