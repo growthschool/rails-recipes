@@ -32,6 +32,12 @@ class Admin::EventTicketsController < ApplicationController
     end
   end
 
+  def destroy
+    @ticket = @event.tickets.find(params[:id])
+    @ticket.destroy
+    redirect_to admin_event_tickets_path(@event)
+  end
+
   protected
 
   def find_event
