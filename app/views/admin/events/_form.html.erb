@@ -42,7 +42,7 @@
   <%= f.select :category_id, Category.all.map{ |c| [c.name, c.id] }, {}, :class => "form-control" %>
 </div>
 
-<%= f.fields_for :tickets do |ff| %>
+<%= f.nested_fields_for :tickets do |ff| %>
   <fieldset style="border-left: 5px solid #bbb; margin-bottom: 10px; padding: 10px;">
     <legend>Ticket</legend>
 
@@ -61,8 +61,12 @@
       <%= ff.text_area :description, class:"form-control" %>
     </div>
 
+    <%= ff.remove_nested_fields_link "移除這個票種", class:"btn btn-danger" %>
   </fieldset>
 <% end %>
+<p class="text-right">
+  <%= f.add_nested_fields_link :tickets,"新增票種", class:"btn btn-default " %>
+</p>
 
 <script>
   $("#event_category_id").select2({ theme: "bootstrap" })
