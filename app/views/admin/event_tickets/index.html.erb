@@ -11,14 +11,14 @@
     <th>Description</th>
     <th>Actions</th>
   </tr>
-  <%= @tickets.each do |ticket| %>
+  <% @tickets.each do |ticket| %>
     <tr>
       <td><%= ticket.name %></td>
       <td><%= ticket.price %></td>
       <td><%= simple_format ticket.description %></td>
       <td>
-        <%= link_to "Edit", edit_admin_event_ticket_path(ticket), class:"btn btn-default" %>
-        <%= link_to "Delete", admin_event_ticket_path(ticket), class:"btn btn-primary" %>
+        <%= link_to "Edit", edit_admin_event_ticket_path(@event, ticket), class:"btn btn-default" %>
+        <%= link_to "Delete", admin_event_ticket_path(@event, ticket), method: :delete, data:{ confirm: "Are you sure?"}, class:"btn btn-primary" %>
       </td>
     </tr>
   <% end %>
