@@ -45,6 +45,7 @@ gem "select2-rails"
 gem "hirb"
 gem "nested_form_fields"
 gem "bootstrap-datepicker-rails"
+gem "ckeditor"
 
 group :development, :test do
   gem 'rspec-rails'
