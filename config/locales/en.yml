@@ -24,3 +24,5 @@ en:
   event_list: Event List
   admin:
     event_list: Admin Event List
+  bulk_update: Bulk Update
+  bulk_delete: Bulk Delete

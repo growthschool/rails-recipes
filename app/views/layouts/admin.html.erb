@@ -11,7 +11,7 @@
   <body>
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
+      <div class="container" style="padding-top: 60px">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
@@ -48,10 +48,13 @@
     </nav>
 
     <div class="container">
+      <% if notice %>
+        <p class="notice alert-success"><%= notice %></p>
+      <% end %>
 
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
-
+      <% if alert %>
+        <p class="alert alert-success"><%= alert %></p>
+      <% end %>
 
       <%= yield %>
     </div>

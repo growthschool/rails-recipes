@@ -8,3 +8,5 @@
       draft: 草稿
       public: 公開
       private: 私密
+  bulk_update: 批次編輯
+  bulk_delete: 批次刪除
