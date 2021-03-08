@@ -9,6 +9,9 @@ class User < ApplicationRecord
 
   accepts_nested_attributes_for :profile
 
+  include RankedModel
+  ranks :row_order
+
   def display_name
     self.email.split("@").first
   end
