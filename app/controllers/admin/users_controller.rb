@@ -17,6 +17,13 @@ class Admin::UsersController < ApplicationController
     end
   end
 
+  def reorder
+    @user = User.find(params[:id])
+    @user.row_order_position = params[:position]
+    @user.save!
+
+    redirect_to admin_users_path
+  end
 
   protected
 

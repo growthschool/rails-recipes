@@ -20,6 +20,10 @@ Rails.application.routes.draw do
     end
     resources :users do
       resource :profile, :controller => "user_profiles"
+
+      member do
+        post :reorder
+      end
     end
   end
 
