@@ -46,6 +46,7 @@ gem "hirb"
 gem "nested_form_fields"
 gem "bootstrap-datepicker-rails"
 gem 'ckeditor', '4.2.4'
+gem 'ranked-model'
 
 group :development, :test do
   gem 'rspec-rails'
