@@ -22,7 +22,10 @@ class Admin::UsersController < ApplicationController
     @user.row_order_position = params[:position]
     @user.save!
 
-    redirect_to admin_users_path
+    respond_to do |format|
+      format.html { redirect_to admin_users_path }
+      format.json { render :json => { :message => "ok" } }
+    end
   end
 
   protected

@@ -1,14 +1,17 @@
 <h1>Admin Users</h1>
 <table class="table">
+<thead>
   <tr>
     <th>ID</th>
     <th>Email</th>
     <th>Groups</th>
     <th>Actions</th>
   </tr>
+</thead>
+<tbody class="sortable">
   <% @users.each do |user| %>
-    <tr>
-      <td><%= user.id %></td>
+    <tr data-reorder-url="<%= reorder_admin_user_path(user) %>">
+      <td><span class="sortable_icon">☰</span><%= user.id %></td>
       <td><%= user.email %></td>
       <td>
         <% user.groups.each do |group| %>
@@ -16,8 +19,8 @@
         <% end %>
       </td>
       <td>
-        <%= link_to "上移", reorder_admin_user_path(user, :position => :up), :method => :post, :class => "btn btn-default" %>
-        <%= link_to "下移", reorder_admin_user_path(user, :position => :down), :method => :post, :class => "btn btn-default" %>
+        <%#= link_to "上移", reorder_admin_user_path(user, :position => :up), :method => :post, :class => "btn btn-default" %>
+        <%#= link_to "下移", reorder_admin_user_path(user, :position => :down), :method => :post, :class => "btn btn-default" %>
         <%= link_to "置頂", reorder_admin_user_path(user, :position => :first), :method => :post, :class => "btn btn-default" %>
         <%= link_to "置底", reorder_admin_user_path(user, :position => :last), :method => :post, :class => "btn btn-default" %>
       </td>
@@ -25,4 +28,26 @@
       <td><%= link_to "Edit Profile", edit_admin_user_profile_path(user), class:"btn btn-default" %></td>
     </tr>
   <% end %>
+</tbody>
 </table>
+
+<script>
+  $( ".sortable" ).sortable({
+    axis: 'y',      // 限制只能上下拖曳
+    cursor: 'tr',   // 拖曳整個 tr
+    handle: ".sortable_icon",       // 限制只有點icon ☰ 才能開始脫衣，砍掉這行的話，會是整個tr都可以拖曳
+    stop: function(e, ui){          // 當拖曳結束時，會掉用此方法
+      ui.item.children('td').effect('hightlight', {}, 1000)
+    },
+    update: function(e, ui){        // 當拖拉結束並且 DOM 上的位置變更時，會調用這個方法
+      reorder_url = ui.item.data('reorder-url')
+      position = ui.item.index()    // 取得順序
+      $.ajax({
+        type: 'POST',
+        url: reorder_url,
+        dataType: 'json',
+        data: {position: position}
+      })
+    }
+  });
+</script>
