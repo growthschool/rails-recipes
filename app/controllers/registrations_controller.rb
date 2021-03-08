@@ -17,6 +17,10 @@ before_action :find_event
     end
   end
 
+  def show
+    @registration = @event.registrations.find_by_uuid(params[:id])
+  end
+
   protected
 
   def registration_params
