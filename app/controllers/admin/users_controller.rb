@@ -1,6 +1,6 @@
 class Admin::UsersController < ApplicationController
   def index
-    @users = User.includes(:groups).all
+    @users = User.includes(:groups).rank(:row_order).all
   end
 
   def edit
