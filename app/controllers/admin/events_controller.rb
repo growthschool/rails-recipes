@@ -69,7 +69,7 @@ class Admin::EventsController < AdminController
     @event.save!
     respond_to do |format|
       format.html { redirect_to admin_events_path }
-      format.jaon { render :json => { :message => "ok" } }
+      format.json { render :json => { :message => "ok" } }
     end
   end
 
