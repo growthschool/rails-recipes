@@ -6,20 +6,26 @@
 
 <%= form_tag bulk_update_admin_events_path, class:"form-inline" do %>
 <table class="table">
+<thead>
 <tr>
   <th><%= check_box_tag "全選", "1", false, :id => "toggle_all" %></th>
   <th>Event Name</th>
   <th>Actions</th>
 </tr>
+</thead>
+<tbody class="sortable">
 <% @events.each do |event| %>
-  <tr>
+  <tr data-reorder-url="<%= reorder_admin_event_path(event) %>">
     <td>
       <%= check_box_tag "ids[]", event.id %>
     </td>
-    <td><%= link_to event.name, admin_event_path(event) %></td>
     <td>
-      <%= link_to "上移", reorder_admin_event_path(event, :position => :up), :method => :post, :class => "btn btn-default" %>
-      <%= link_to "下移", reorder_admin_event_path(event, :position => :down), :method => :post, :class => "btn btn-default" %>
+      <span class="sortable_icon">☰</span>
+      <%= link_to event.name, admin_event_path(event) %>
+    </td>
+    <td>
+      <%#= link_to "上移", reorder_admin_event_path(event, :position => :up), :method => :post, :class => "btn btn-default" %>
+      <%#= link_to "下移", reorder_admin_event_path(event, :position => :down), :method => :post, :class => "btn btn-default" %>
       <%= link_to "置頂", reorder_admin_event_path(event, :position => :first), :method => :post, :class => "btn btn-default" %>
       <%= link_to "置底", reorder_admin_event_path(event, :position => :last), :method => :post, :class => "btn btn-default" %>
 
@@ -28,6 +34,7 @@
       <%= link_to "Delete", admin_event_path(event), :method => "delete", :data => { :confirm => "Are you sure?" }, :class => "btn btn-danger" %>
   </tr>
 <% end %>
+</tbody>
 </table>
   <p>
     <%= select_tag :event_status, options_for_select( Event::STATUS.map{ |s| [t(s, :scope => + "event.status"), s] }), :class => "form-control" %>
@@ -46,4 +53,23 @@
       $("input[name='ids[]']").prop("checked", false);
     }
   })
+
+  $( ".sortable" ).sortable({
+    axis: 'y',      // 限制只能上下拖曳
+    cursor: 'tr',   // 拖曳整個 tr
+    handle: ".sortable_icon",       // 限制只有點icon ☰ 才能開始脫衣，砍掉這行的話，會是整個tr都可以拖曳
+    stop: function(e, ui){          // 當拖曳結束時，會掉用此方法
+      ui.item.children('td').effect('hightlight', {}, 1000)
+    },
+    update: function(e, ui){        // 當拖拉結束並且 DOM 上的位置變更時，會調用這個方法
+      reorder_url = ui.item.data('reorder-url')
+      position = ui.item.index()    // 取得順序
+      $.ajax({
+        type: 'POST',
+        url: reorder_url,
+        dataType: 'json',
+        data: {position: position}
+      })
+    }
+  });
 </script>
