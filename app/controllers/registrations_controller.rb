@@ -1,10 +1,10 @@
 class RegistrationsController < ApplicationController
+before_action :find_event
+
   def new
-    @event = Event.find_by_friendly_id(params[:event_id])
   end
 
   def create
-    @event = Event.find_by_friendly_id(params[:event_id])
     @registration = @event.registrations.new(registration_params)
     @registration.ticket = @event.tickets.find( params[:registration][:ticket_id] )
     @registration.status = "confirmed"
@@ -21,6 +21,10 @@ class RegistrationsController < ApplicationController
 
   def registration_params
     params.require(:registration).permit(:ticket_id, :name, :email, :cellphone, :website, :bio)
+  end
+
+  def find_event
+    @event = Event.find_by_friendly_id(params[:event_id])
   end
 
 end
