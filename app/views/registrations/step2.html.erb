@@ -6,7 +6,7 @@
 
   <div class="form-group <%= (f.object.errors[:name].any?)? "has-error" : "" %>">
     <%= f.label :name, "姓名", :calss => "control-label" %>
-    <%= f.text_field :name, :class => "form-control" %>
+    <%= f.text_field :name, :class => "form-control", :required => true, :autofocus => true %>
     <% if f.object.errors[:name] %>
       <span class="help-block"><%= safe_join(f.object.errors[:name], "、") %></span>
     <% end %>
@@ -14,7 +14,7 @@
 
   <div class="form-group <%= (f.object.errors[:email].any?)? "has-error" : "" %>">
     <%= f.label :email, "E-mail", :calss => "control-label" %>
-    <%= f.email_field :email, :class => "form-control" %>
+    <%= f.email_field :email, :class => "form-control", :required => true %>
     <% if f.object.errors[:email] %>
       <span class="help-block"><%= safe_join(f.object.errors[:email], "、") %></span>
     <% end %>
@@ -22,7 +22,7 @@
 
   <div class="form-group <%= (f.object.errors[:cellphone].any?)? "has-error" : "" %>">
     <%= f.label :cellphone, "電話", :calss => "control-label" %>
-    <%= f.text_field :cellphone, :class => "form-control" %>
+    <%= f.text_field :cellphone, :class => "form-control", :required => true %>
     <% if f.object.errors[:cellphone] %>
       <span class="help-block"><%= safe_join(f.object.errors[:cellphone], "、") %></span>
     <% end %>
