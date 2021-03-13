@@ -9,11 +9,26 @@ before_action :find_event
     @registration.ticket = @event.tickets.find( params[:registration][:ticket_id] )
     @registration.status = "pending"
     @registration.user = current_user
+    @registration.current_step = 1
 
     if @registration.save
       redirect_to step2_event_registration_path(@event, @registration)
     else
       render "new"
+    end
+  end
+
+  def step1
+    @registration = @event.registrations.find_by_uuid(params[:id])
+  end
+
+  def step1_update
+    @registration = @event.registrations.find_by_uuid(params[:id])
+
+    if @registration.update(registration_params)
+      redirect_to step2_event_registration_path(@event, @registration)
+    else
+      render "step1"
     end
   end
 
