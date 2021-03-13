@@ -16,6 +16,8 @@ class Registration < ApplicationRecord
     self.uuid
   end
 
+  protected
+
   def generate_uuid
     self.uuid = SecureRandom.uuid
   end
