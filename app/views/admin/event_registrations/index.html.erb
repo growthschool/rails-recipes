@@ -1,0 +1,35 @@
+<h1><%= @event.name %> / Registrations</h1>
+
+<p class="text-right">
+  <%= link_to "New Registration", new_admin_event_registration_path(@event),
+  :class => "btn btn-primary" %>
+</p>
+
+<table class="table">
+  <tr>
+    <th>ID</th>
+    <th>Ticket</th>
+    <th>Name</th>
+    <th>Status</th>
+    <th>E-mail</th>
+    <th>建立時間</th>
+    <th>Actions</th>
+  </tr>
+  <% @registrations.each do |registration| %>
+  <tr>
+    <td><%= registration.id %></td>
+    <td><%= registration.ticket.name %></td>
+    <td><%= registration.name %></td>
+    <td><%= t( registration.status, :scope => "registration.status") %></td>
+    <td><%= registration.email %></td>
+    <td><%= registration.created_at %></td>
+    <td>
+      <%= link_to "Edit", edit_admin_event_registration_path(@event,
+      registration), :class => "btn btn-default" %> <%= link_to "Delete",
+      admin_event_registration_path(@event, registration), :method => "delete",
+      :data => { :confirm => "Are you sure?" }, :class => "btn btn-danger" %>
+    </td>
+  </tr>
+
+  <% end %>
+</table>
