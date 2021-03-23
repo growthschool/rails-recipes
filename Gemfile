@@ -54,6 +54,8 @@ gem 'paper_trail'
 gem 'rubyzip'
 gem 'axlsx'
 gem 'axlsx_rails'
+gem 'carrierwave'
+gem "mini_magick"
 
 group :development, :test do
   gem 'rspec-rails'
