@@ -36,6 +36,8 @@
     <label> <%= check_box_tag "ticket_ids[]", t.id, Array(params[:ticket_ids]).include?(t.id.to_s) %> <%= t.name %> (<%= + @event.registrations.where( :ticket_id => t.id ).size %>)</label>
   <% end %></p>
 
+  <p><%= text_field_tag :registration_id, params[:registration_id], :placeholder => "報名編號，可用,號區隔", :class => "form-control" %></p>
+
   <p class="text-right">
     <%= submit_tag "送出篩選", :class => "btn btn-primary" %>
   </p>
