@@ -19,6 +19,8 @@ class Event < ApplicationRecord
 
   include RankedModel
   ranks :row_order
+  scope :only_public, -> { where( :status => "public" ) }
+  scope :only_available, -> { where( :status => ["public", "private"] ) }
 
   def to_param
     # "#{self.id}-#{self.name}"
