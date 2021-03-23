@@ -5,6 +5,7 @@
   :class => "btn btn-primary" %>
 </p>
 
+<% if false %>
 <div class="submenu">
   <div class="btn-group">
     <%= link_to "全部 (#{@event.registrations.size})", admin_event_registrations_path(registration_filters(:status =>   nil)), :class => "btn btn-success btn-group #{(params[:status].blank?) ? "active" : ""}" %>
@@ -19,6 +20,23 @@
     <% end %>
   </div>
 </div>
+<% end %>
+
+<%= form_tag admin_event_registrations_path(@event), :method => :get do %>
+
+  <p><% Registration::STATUS.each do |s| %>
+    <label><%= check_box_tag "statuses[]", s, Array(params[:statuses]).include?(s) %> <%= t(s, :scope => + "registration.status") %> (<%= @event.registrations.by_status(s).size %>)</label>
+  <% end %></p>
+
+  <p><% @event.tickets.each do |t| %>
+    <label> <%= check_box_tag "ticket_ids[]", t.id, Array(params[:ticket_ids]).include?(t.id.to_s) %> <%= t.name %> (<%= + @event.registrations.where( :ticket_id => t.id ).size %>)</label>
+  <% end %></p>
+
+  <p class="text-right">
+    <%= submit_tag "送出篩選", :class => "btn btn-primary" %>
+  </p>
+
+<% end %>
 
 <table class="table">
   <tr>
