@@ -22,7 +22,7 @@
 </div>
 <% end %>
 
-<%= form_tag admin_event_registrations_path(@event), :method => :get do %>
+<%= search_form_for @q, :url => admin_event_registrations_path(@event) do |f| %>
 
   <p>
     報名日期：<%= date_field_tag :start_on, params[:start_on] %>～<%= date_field_tag :end_on, params[:end_on] %>
@@ -36,6 +36,8 @@
     <label> <%= check_box_tag "ticket_ids[]", t.id, Array(params[:ticket_ids]).include?(t.id.to_s) %> <%= t.name %> (<%= + @event.registrations.where( :ticket_id => t.id ).size %>)</label>
   <% end %></p>
 
+  <p><%= f.search_field :name_cont, :placeholder => "姓名", :class => "form-control" %></p>
+  <p><%= f.search_field :email_cont, :placeholder => "E-mail", :class => "form-control" %></p>
   <p><%= text_field_tag :registration_id, params[:registration_id], :placeholder => "報名編號，可用,號區隔", :class => "form-control" %></p>
 
   <p class="text-right">
