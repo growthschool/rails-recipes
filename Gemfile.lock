@@ -129,6 +129,9 @@ GEM
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
     orm_adapter (0.5.0)
+    paper_trail (10.3.1)
+      activerecord (>= 4.2)
+      request_store (~> 1.1)
     polyamorous (2.3.0)
       activerecord (>= 5.0)
     puma (3.8.2)
@@ -174,6 +177,8 @@ GEM
     rb-fsevent (0.9.8)
     rb-inotify (0.9.8)
       ffi (>= 0.5.0)
+    request_store (1.5.0)
+      rack (>= 1.4)
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
@@ -257,6 +262,7 @@ DEPENDENCIES
   kaminari
   listen (~> 3.0.5)
   nested_form_fields
+  paper_trail
   puma (~> 3.0)
   rails (~> 5.0.2)
   rails-i18n
