@@ -49,6 +49,7 @@ gem 'ckeditor', '4.2.4'
 gem 'ranked-model'
 gem 'jquery-ui-rails'
 gem 'kaminari'
+gem 'ransack'
 
 group :development, :test do
   gem 'rspec-rails'
