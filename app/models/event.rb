@@ -1,4 +1,5 @@
 class Event < ApplicationRecord
+  mount_uploader :logo, EventLogoUploader
 
   STATUS = ["draft", "public", "private"]
   validates_inclusion_of :status, :in => STATUS
