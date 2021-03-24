@@ -27,6 +27,19 @@
 </div>
 
 <div class="form-group">
+  <%= f.label :images %>
+  <%= f.file_field :images, :multiple => true, :class => "form-control" %>
+  <% if f.object.images.present? %>
+    <label>
+      <%= f.check_box :remove_images %> 刪除圖檔
+    </label>
+    <% f.object.images.each do |image| %>
+      <%= link_to image.filename, image.url, :target => "_blank" %>
+    <% end %>
+  <% end %>
+</div>
+
+<div class="form-group">
   <%= f.label :description %>
   <%= f.cktext_area :description, ckeditor: { language: 'zh-TW'} %>
 </div>

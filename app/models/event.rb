@@ -1,5 +1,8 @@
 class Event < ApplicationRecord
   mount_uploader :logo, EventLogoUploader
+  mount_uploaders :images, EventImageUploader
+  serialize :images, JSON
+
 
   STATUS = ["draft", "public", "private"]
   validates_inclusion_of :status, :in => STATUS

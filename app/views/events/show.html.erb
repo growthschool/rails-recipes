@@ -6,5 +6,12 @@
 <% # =display_event_status(@event) %>
 <h2><%= t(@event.status, :scope => "event.status") %></h2>
 <h2><%= @event.category.try(:name) %></h2>
+
+<% if @event.images.present? %>
+  <% @event.images.each do |image| %>
+    <%= link_to image_tag(image.url(:small)), image.url %>
+  <% end %>
+<% end %>
+
 <%= sanitize @event.description %>
 <p><%= link_to "開始報名", new_event_registration_path(@event), class:"btn btn-primary" %></p>
