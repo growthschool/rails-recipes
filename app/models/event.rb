@@ -21,6 +21,9 @@ class Event < ApplicationRecord
 
   has_many :registrations, :dependent => :destroy
 
+  has_many :attachments, :class_name => "EventAttachment", :dependent => :destroy
+  accepts_nested_attributes_for :attachments, allow_destroy: true, :reject_if => :all_blank
+
   include RankedModel
   ranks :row_order
   scope :only_public, -> { where( :status => "public" ) }

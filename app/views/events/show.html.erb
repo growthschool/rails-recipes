@@ -13,5 +13,11 @@
   <% end %>
 <% end %>
 
+<ul>
+<% @event.attachments.each do |a| %>
+  <li><%= link_to a.description, a.attachment.url %></li>
+<% end %>
+</ul>
+
 <%= sanitize @event.description %>
 <p><%= link_to "開始報名", new_event_registration_path(@event), class:"btn btn-primary" %></p>

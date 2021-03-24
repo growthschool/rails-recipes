@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210324123914) do
+ActiveRecord::Schema.define(version: 20210324130722) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -27,6 +27,14 @@ ActiveRecord::Schema.define(version: 20210324123914) do
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
     t.index ["type"], name: "index_ckeditor_assets_on_type"
+  end
+
+  create_table "event_attachments", force: :cascade do |t|
+    t.integer  "event_id"
+    t.string   "attachment"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "events", force: :cascade do |t|
